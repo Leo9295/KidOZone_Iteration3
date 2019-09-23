@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/puzzle_title"/>
+
+    <Button
+        android:id="@+id/imageAnimal"
+        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:layout_marginTop="120dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/animal_puzzle_icon"/>
+
+    <Button
+        android:id="@+id/animal"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/imageAnimal"
+        android:background="@drawable/button_style5"
+        android:text="New animal friends!"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp" />
+
+
+    <Button
+        android:id="@+id/imageSport"
+        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/animal"
+        android:background="@drawable/sport_puzzle_icon"/>
+
+    <Button
+        android:id="@+id/sport"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageSport"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/button_style5"
+        android:text="Australia sports"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/imageView"
+        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:layout_marginTop="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/animal"
+        android:background="@drawable/view_puzzle_icon"/>
+
+
+
+    <Button
+        android:id="@+id/View"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/button_style5"
+        android:text="Australia attractions"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/back_button_pic"/>
+
+
+</RelativeLayout>
