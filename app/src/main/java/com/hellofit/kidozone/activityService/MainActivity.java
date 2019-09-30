@@ -1,7 +1,11 @@
 package com.hellofit.kidozone.activityService;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.ComponentCallbacks;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
@@ -15,8 +19,10 @@ import com.hellofit.kidozone.common.SystemUtil;
 import com.hellofit.kidozone.entity.FoodInfo;
 import com.hellofit.kidozone.entity.WasteInfo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -32,12 +38,14 @@ public class MainActivity extends AppCompatActivity {
     // The list to contain the waste entity which using in the game
     private ArrayList<WasteInfo> wasteInfos;
 
+
     MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         foodInfos = new ArrayList<FoodInfo>();
         wasteInfos = new ArrayList<WasteInfo>();
@@ -164,6 +172,5 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
-
 
 }
