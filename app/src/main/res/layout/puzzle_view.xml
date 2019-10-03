@@ -3,13 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="85dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/sight_title" />
-
+        android:layout_alignParentTop="true"
+        android:background="@drawable/view_title" />
 
     <com.hellofit.kidozone.puzzleGame.ui.PuzzleLayout
         android:id="@+id/puzzleLayout"
@@ -32,8 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivSrcImg"
         android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-medium"
         android:text="Click to pick image"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvLevel"
@@ -41,8 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/puzzleLayout"
         android:layout_centerInParent="true"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:fontFamily="sans-serif-medium"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btnAddLevel"
@@ -51,9 +52,10 @@
         android:layout_below="@+id/tvLevel"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/ivSrcImg"
+        android:background="@drawable/button_style5"
         android:onClick="addLevel"
         android:textAllCaps="false"
-        android:text="Level up" />
+        android:text="Level up"  />
 
     <Button
         android:id="@+id/btnReduceLevel"
@@ -63,6 +65,7 @@
         android:layout_toLeftOf="@+id/ivSrcImg"
         android:layout_marginLeft="10dp"
         android:onClick="reduceLevel"
+        android:background="@drawable/button_style5"
         android:textAllCaps="false"
         android:text="Level down" />
 

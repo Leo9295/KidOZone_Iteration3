@@ -25,8 +25,8 @@
 
     <ImageView
         android:id="@+id/imageDes"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/bin_title" />
 
@@ -37,6 +37,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="240dp"
+        android:fontFamily="sans-serif-medium"
         android:text="TextView"
         android:textAllCaps="false"
         android:textSize="18sp" />

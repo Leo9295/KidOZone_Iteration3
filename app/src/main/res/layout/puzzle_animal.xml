@@ -32,8 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivSrcImg"
         android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-medium"
         android:text="Click to pick image"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvLevel"
@@ -41,8 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/puzzleLayout"
         android:layout_centerInParent="true"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:fontFamily="sans-serif-medium"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btnAddLevel"
@@ -53,6 +54,7 @@
         android:layout_toRightOf="@+id/ivSrcImg"
         android:onClick="addLevel"
         android:textAllCaps="false"
+        android:background="@drawable/button_style5"
         android:text="Level up" />
 
     <Button
@@ -60,11 +62,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvLevel"
-        android:layout_toLeftOf="@+id/ivSrcImg"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginRight="1dp"
+        android:layout_toLeftOf="@+id/ivSrcImg"
+        android:fontFamily="sans-serif-medium"
         android:onClick="reduceLevel"
-        android:textAllCaps="false"
-        android:text="Level down" />
+        android:text="Level down"
+        android:background="@drawable/button_style5"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/backButton"

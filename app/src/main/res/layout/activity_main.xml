@@ -15,9 +15,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dp"
         android:background="@drawable/button_style6"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="false"
         android:text="Puzzle Game"
         android:textAlignment="center"
-        android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="16sp" />
 

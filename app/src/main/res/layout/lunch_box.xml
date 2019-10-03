@@ -14,6 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="✖ ←   →   ❤"
+        android:fontFamily="sans-serif-medium"
         android:textAllCaps="false"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -25,6 +26,7 @@
         android:layout_below="@+id/textDes"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-medium"
         android:text=""
         android:textAllCaps="false"
         android:textSize="18sp" />
@@ -74,6 +76,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="0/6"
+        android:fontFamily="sans-serif-medium"
         android:textSize="24sp" />
 
 
