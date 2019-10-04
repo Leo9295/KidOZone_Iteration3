@@ -185,7 +185,7 @@ public class PuzzleLayout extends FrameLayout implements View.OnClickListener {
      */
     public boolean addCount() {
         mCount++;
-        if (mCount > 3) {
+        if (mCount > 4) {
             mCount--;
             return false;
         }
