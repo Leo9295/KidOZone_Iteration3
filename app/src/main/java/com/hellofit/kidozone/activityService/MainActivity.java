@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, LunchBox.class);
+                Intent intent = new Intent(MainActivity.this, LunchIntro.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(foodInfos);
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, LunchBox.class);
+                Intent intent = new Intent(MainActivity.this, LunchIntro.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(foodInfos);
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, Waste.class);
+                Intent intent = new Intent(MainActivity.this, WasteIntro.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(wasteInfos);
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, Waste.class);
+                Intent intent = new Intent(MainActivity.this, WasteIntro.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(wasteInfos);
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, Puzzle.class);
+                Intent intent = new Intent(MainActivity.this, PuzzleIntro.class);
                 startActivityForResult(intent, 1);
             }
         });
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, Puzzle.class);
+                Intent intent = new Intent(MainActivity.this, PuzzleIntro.class);
                 startActivity(intent);
             }
         });

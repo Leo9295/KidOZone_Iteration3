@@ -15,6 +15,15 @@
             android:name=".activityService.OpenVideo"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activityService.PuzzleIntro"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activityService.LunchIntro"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activityService.WasteIntro"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activityService.LunchBox"
             android:screenOrientation="portrait" />
         <activity
