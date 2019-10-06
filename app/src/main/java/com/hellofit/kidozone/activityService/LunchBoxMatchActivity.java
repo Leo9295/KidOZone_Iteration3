@@ -26,8 +26,6 @@ import java.util.Random;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
-
 public class LunchBoxMatchActivity extends AppCompatActivity {
 
     private ArrayList<FoodInfo> foodInfoList;
@@ -45,7 +43,7 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lunch_box);
+        setContentView(R.layout.activity_lunch_box_match);
 
         // Initialize view component
         final Button btn_backButton = (Button) findViewById(R.id.backButton);
@@ -172,7 +170,7 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
         } else {
             ArrayList<Integer> temp = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 3, 4, 5, 6));
             temp.remove(indexOfFoodCategory(foodInfoList.get(foodIndex).getCategoryName()));
-            setFoodTypeImage(temp.get(getRandomNum(0, temp.size()) - 1), textView);
+            setFoodTypeImage(temp.get(getRandomNum(0, temp.size())), textView);
         }
     }
 
