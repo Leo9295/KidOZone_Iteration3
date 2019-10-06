@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background_pic">
 
 
     <Button
@@ -10,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvLevel"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/ivSrcImg"
         android:background="@drawable/button_style5"
         android:onClick="addLevel"
@@ -23,7 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvLevel"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
         android:layout_toLeftOf="@+id/ivSrcImg"
         android:background="@drawable/button_style5"
         android:fontFamily="sans-serif-medium"
