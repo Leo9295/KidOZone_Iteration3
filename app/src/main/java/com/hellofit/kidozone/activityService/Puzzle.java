@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import com.hellofit.kidozone.R;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.appcompat.app.AppCompatActivity;
 
 public class Puzzle extends AppCompatActivity {
 

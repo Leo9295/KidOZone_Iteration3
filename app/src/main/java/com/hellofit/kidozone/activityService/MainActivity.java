@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     // The list to contain the waste entity which using in the game
     private ArrayList<WasteInfo> wasteInfos;
 
-
     MediaPlayer mp;
     int media_length;
 
@@ -34,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         foodInfos = new ArrayList<FoodInfo>();
         wasteInfos = new ArrayList<WasteInfo>();
@@ -108,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     private class GetFoodEntityAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
-            foodInfos = RestClient.parseFoodJson(RestClient.getLunchBoxList());
+            foodInfos = RestClient.parseFoodJson(RestClient.getLunchboxFoodList());
             return null;
         }
     }

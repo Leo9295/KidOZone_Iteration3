@@ -14,8 +14,7 @@
         <activity android:name=".activityService.LunchBoxIntroActivity" />
         <activity android:name=".activityService.AboutUsActivity" />
         <activity
-            android:name=".activityService.LunchBoxMatchActivity"
-            android:screenOrientation="portrait" />
+            android:name=".activityService.LunchBoxMatchActivity"/>
         <activity
             android:name=".activityService.LunchBoxResult"
             android:screenOrientation="portrait" />

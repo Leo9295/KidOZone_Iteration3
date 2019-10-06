@@ -18,14 +18,15 @@
         android:text="FoodTypePlaceHolder"
         android:layout_below="@id/iv_match_food_type" />
 
+
     <TextView
         android:id="@+id/foodName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
         android:layout_below="@+id/iv_match_food_type"
         android:fontFamily="sans-serif-medium"
+        android:layout_marginTop="40dp"
         android:text="FoodNamePlaceHolder"
         android:textAllCaps="false"
         android:textSize="20sp" />
@@ -87,33 +88,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="45dp"
         android:background="@drawable/number_one"/>
-
-<!--
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="80dp"
-        android:layout_toRightOf="@+id/Food"
-        android:layout_below="@id/foodName"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/like_button" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/Food"
-        android:layout_below="@id/foodName"
-        android:layout_marginTop="80dp"
-        android:layout_marginRight="10dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/dislike_button" />
--->
-
 
 
 
