@@ -1,35 +1,23 @@
 package com.hellofit.kidozone.activityService;
 
-import android.app.Activity;
-import android.app.Application;
-import android.content.ComponentCallbacks;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hellofit.kidozone.R;
 import com.hellofit.kidozone.common.RestClient;
-import com.hellofit.kidozone.common.SystemUtil;
 import com.hellofit.kidozone.entity.FoodInfo;
 import com.hellofit.kidozone.entity.WasteInfo;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,14 +26,12 @@ public class MainActivity extends AppCompatActivity {
     // The list to contain the waste entity which using in the game
     private ArrayList<WasteInfo> wasteInfos;
 
-
     MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         foodInfos = new ArrayList<FoodInfo>();
         wasteInfos = new ArrayList<WasteInfo>();
@@ -70,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, LunchBox.class);
+                Intent intent = new Intent(MainActivity.this, LunchBoxIntroActivity.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(foodInfos);
@@ -86,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, LunchBox.class);
+                Intent intent = new Intent(MainActivity.this, LunchBoxIntroActivity.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(foodInfos);
@@ -160,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
     private class GetFoodEntityAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
-            foodInfos = RestClient.parseFoodJson(RestClient.getRandomFood());
+            foodInfos = RestClient.parseFoodJson(RestClient.getLunchboxFoodList());
             return null;
         }
     }
@@ -172,5 +158,6 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
 
 }

@@ -1,14 +1,10 @@
 package com.hellofit.kidozone.activityService;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 public class LunchBoxResult extends AppCompatActivity {
 
@@ -32,14 +27,14 @@ public class LunchBoxResult extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lunch_result);
+        setContentView(R.layout.activity_lunch_result);
 
         Button backButton = (Button) findViewById(R.id.backButton);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LunchBoxResult.this, LunchBox.class);
+                Intent intent = new Intent(LunchBoxResult.this, LunchBoxMatchPart.class);
                 startActivityForResult(intent, 1);
             }
         });

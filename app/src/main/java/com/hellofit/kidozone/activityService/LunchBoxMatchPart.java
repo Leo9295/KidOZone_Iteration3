@@ -2,18 +2,14 @@ package com.hellofit.kidozone.activityService;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,18 +19,14 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hellofit.kidozone.R;
-import com.hellofit.kidozone.common.RestClient;
-import com.hellofit.kidozone.common.SystemUtil;
 import com.hellofit.kidozone.entity.FoodInfo;
-import com.hellofit.kidozone.entity.WasteInfo;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-public class LunchBox extends AppCompatActivity {
+public class LunchBoxMatchPart extends AppCompatActivity {
 
 
     private float downX;
@@ -47,26 +39,24 @@ public class LunchBox extends AppCompatActivity {
 
     private MediaPlayer mp;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lunch_box);
+        setContentView(R.layout.activity_lunch_box_match);
 
         // Initialize view component
         Button btn_goResult = (Button) findViewById(R.id.finish);
         Button btn_backButton = (Button) findViewById(R.id.backButton);
         ImageView iv_foodImage = (ImageView) findViewById(R.id.Food);
-        TextView tv_userPickedSum = (TextView) findViewById(R.id.count);
         TextView tv_foodName = (TextView) findViewById(R.id.foodName);
 
         foodInfos = new ArrayList<FoodInfo>();
         pickedList = new ArrayList<FoodInfo>();
 
-        mp = MediaPlayer.create(LunchBox.this, R.raw.lunch_box_intro);
+        mp = MediaPlayer.create(LunchBoxMatchPart.this, R.raw.lunch_box_intro);
         mp.start();
 
-        // Load Waste data from SharedPreferences
+        // Load food data from SharedPreferences
         SharedPreferences sp = getSharedPreferences("SystemSP", MODE_PRIVATE);
         String json = sp.getString("foodList", null);
         if (json != null) {
@@ -79,7 +69,7 @@ public class LunchBox extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Intent intent = new Intent(LunchBox.this, LunchBoxResult.class);
+                Intent intent = new Intent(LunchBoxMatchPart.this, LunchBoxResult.class);
                 bundle.putSerializable("pickItemList", pickedList);
                 intent.putExtras(bundle);
                 startActivityForResult(intent, 1);
@@ -90,7 +80,7 @@ public class LunchBox extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Intent intent = new Intent(LunchBox.this, MainActivity.class);
+                Intent intent = new Intent(LunchBoxMatchPart.this, MainActivity.class);
                 startActivityForResult(intent, 1);
             }
         });
@@ -98,7 +88,6 @@ public class LunchBox extends AppCompatActivity {
         listIndex = 0;
         count = 0;
 
-        tv_userPickedSum.setText(count + " / 6");
         tv_foodName.setText(foodInfos.get(listIndex).getFoodName());
         Glide.with(this).load(foodInfos.get(listIndex).getFoodImage()).into(iv_foodImage);
         Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
@@ -134,13 +123,13 @@ public class LunchBox extends AppCompatActivity {
                 Log.e("Tag", "========Y axis Distance：" + dy);
                 if (Math.abs(dx) > 300 || Math.abs(dy) > 300) {
 
-                    MediaPlayer mp = MediaPlayer.create(LunchBox.this, R.raw.shoop);
+                    MediaPlayer mp = MediaPlayer.create(LunchBoxMatchPart.this, R.raw.shoop);
                     mp.start();
                     int orientation = getOrientation(dx, dy);
                     if (listIndex < foodInfos.size() && !pickedList.contains(foodInfos.get(listIndex))) {
                         if (count < 6) {
                             if (orientation == 'r') {
-                                Toast toast = Toast.makeText(LunchBox.this, "Added to the lunchBox!", Toast.LENGTH_SHORT);
+                                Toast toast = Toast.makeText(LunchBoxMatchPart.this, "Added to the lunchBox!", Toast.LENGTH_SHORT);
                                 toast.setGravity(Gravity.CENTER, 0, 0);
                                 toast.show();
                                 pickedList.add(foodInfos.get(listIndex));
@@ -167,7 +156,7 @@ public class LunchBox extends AppCompatActivity {
                                 tv_userPickedSum.startAnimation(shake);
 
                             } else {
-                                Toast toast1 = Toast.makeText(LunchBox.this, "Looks like u dont like it!", Toast.LENGTH_SHORT);
+                                Toast toast1 = Toast.makeText(LunchBoxMatchPart.this, "Looks like u dont like it!", Toast.LENGTH_SHORT);
                                 toast1.setGravity(Gravity.CENTER, 0, 0);
                                 toast1.show();
                                 if (listIndex < foodInfos.size()) {
@@ -189,11 +178,11 @@ public class LunchBox extends AppCompatActivity {
                             }
                             // Display display = getWindowManager().getDefaultDisplay();
                             //   int height = display.getHeight();
-                            //  Toast toast = Toast.makeText(LunchBox.this, "", Toast.LENGTH_SHORT);
+                            //  Toast toast = Toast.makeText(LunchBoxMatchPart.this, "", Toast.LENGTH_SHORT);
                             // toast.setGravity(Gravity.TOP, 0, 5 * (height / 8));
                             //   toast.show();
                         } else {
-                            Toast toast1 = Toast.makeText(LunchBox.this, "You have already picked 6, submit and check the score!", Toast.LENGTH_SHORT);
+                            Toast toast1 = Toast.makeText(LunchBoxMatchPart.this, "You have already picked 6, submit and check the score!", Toast.LENGTH_SHORT);
                             toast1.setGravity(Gravity.CENTER, 0, 0);
                             toast1.show();
                         }
