@@ -29,12 +29,13 @@ public class SystemUtil {
 
     /**
      * To calculate the distance bewteen user and school
-     * @author Mingzhe Liu
+     *
      * @param userCoordinate
      * @param schoolCoordinate
      * @return result
+     * @author Mingzhe Liu
      */
-    public String distance4UserAndSchoolCal(Coordinate userCoordinate, Coordinate schoolCoordinate ) {
+    public String distance4UserAndSchoolCal(Coordinate userCoordinate, Coordinate schoolCoordinate) {
         String result = "";
 
         double longAbs = Math.abs(userCoordinate.getLongtitude() - schoolCoordinate.getLongtitude());
@@ -71,7 +72,7 @@ public class SystemUtil {
      * @param object
      * @param stringName
      */
-    public static void saveObject(Context context, Object object, String stringName){
+    public static void saveObject(Context context, Object object, String stringName) {
         try {
             SharedPreferences sharedPreferences = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -95,33 +96,33 @@ public class SystemUtil {
      * @param keyword
      * @return
      */
-    public static Object readObject(Context context, String keyword){
-        try{
+    public static Object readObject(Context context, String keyword) {
+        try {
             SharedPreferences sharedPreferences = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            if(sharedPreferences.contains(keyword)){
+            if (sharedPreferences.contains(keyword)) {
                 String string = sharedPreferences.getString(keyword, "");
-                if(!(string.isEmpty() || string == null)){
+                if (!(string.isEmpty() || string == null)) {
                     byte[] stringToBytes = StringToBytes(string);
-                    ByteArrayInputStream bis=new ByteArrayInputStream(stringToBytes);
-                    ObjectInputStream is=new ObjectInputStream(bis);
+                    ByteArrayInputStream bis = new ByteArrayInputStream(stringToBytes);
+                    ObjectInputStream is = new ObjectInputStream(bis);
                     Object readObject = is.readObject();
                     return readObject;
-                }else{
+                } else {
                     return null;
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private static String bytesToHexString(byte[] byteArray){
-        if(byteArray == null){
+    private static String bytesToHexString(byte[] byteArray) {
+        if (byteArray == null) {
             return null;
         }
-        if(byteArray.length == 0){
+        if (byteArray.length == 0) {
             return "";
         }
         StringBuffer sb = new StringBuffer(byteArray.length);
@@ -135,34 +136,33 @@ public class SystemUtil {
         return sb.toString();
     }
 
-    private static byte[] StringToBytes(String string){
+    private static byte[] StringToBytes(String string) {
         String hexString = string.toUpperCase().trim();
-        if (hexString.length()%2!=0) {
+        if (hexString.length() % 2 != 0) {
             return null;
         }
-        byte[] retData=new byte[hexString.length()/2];
-        for(int i=0;i<hexString.length();i++)
-        {
+        byte[] retData = new byte[hexString.length() / 2];
+        for (int i = 0; i < hexString.length(); i++) {
             int int_ch;
             char hex_char1 = hexString.charAt(i);
             int int_ch3;
-            if(hex_char1 >= '0' && hex_char1 <='9')
-                int_ch3 = (hex_char1-48)*16;
-            else if(hex_char1 >= 'A' && hex_char1 <='F')
-                int_ch3 = (hex_char1-55)*16;
+            if (hex_char1 >= '0' && hex_char1 <= '9')
+                int_ch3 = (hex_char1 - 48) * 16;
+            else if (hex_char1 >= 'A' && hex_char1 <= 'F')
+                int_ch3 = (hex_char1 - 55) * 16;
             else
                 return null;
             i++;
             char hex_char2 = hexString.charAt(i);
             int int_ch4;
-            if(hex_char2 >= '0' && hex_char2 <='9')
-                int_ch4 = (hex_char2-48);
-            else if(hex_char2 >= 'A' && hex_char2 <='F')
-                int_ch4 = hex_char2-55;
+            if (hex_char2 >= '0' && hex_char2 <= '9')
+                int_ch4 = (hex_char2 - 48);
+            else if (hex_char2 >= 'A' && hex_char2 <= 'F')
+                int_ch4 = hex_char2 - 55;
             else
                 return null;
-            int_ch = int_ch3+int_ch4;
-            retData[i/2]=(byte) int_ch;
+            int_ch = int_ch3 + int_ch4;
+            retData[i / 2] = (byte) int_ch;
         }
         return retData;
     }

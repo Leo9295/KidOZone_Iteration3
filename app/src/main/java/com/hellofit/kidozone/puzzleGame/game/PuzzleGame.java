@@ -1,5 +1,10 @@
 package com.hellofit.kidozone.puzzleGame.game;
 
+/***
+ *  This class include function methods about the puzzle game
+ *  @author Weiqiang Li
+ */
+
 import android.content.Context;
 import android.widget.Toast;
 
@@ -48,7 +53,7 @@ public class PuzzleGame implements Game, PuzzleLayout.SuccessListener {
             return;
         }
         if (!puzzleLayout.reduceCount()) {
-            Toast.makeText(context,"Is the lowest level.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Is the lowest level.", Toast.LENGTH_SHORT).show();
         }
         if (stateListener != null) {
             stateListener.setLevel(getLevel());

@@ -54,6 +54,7 @@ public class OpenVideo extends AppCompatActivity {
         videoView.setVideoURI(Uri.parse(uri));
         videoView.setMediaController(mediaController);
         mediaController.setMediaPlayer(videoView);
+        mediaController.setVisibility(View.INVISIBLE);
         videoView.requestFocus();
         videoView.start();
     }

@@ -43,7 +43,9 @@ public class WasteInfo implements Parcelable, java.io.Serializable {
         this.wasteImagePath = wasteImagePath;
     }
 
-    public WasteInfo() { super(); }
+    public WasteInfo() {
+        super();
+    }
 
     public WasteInfo(String id, String categoryName, String wasteName, String wasteImagePath) {
         this.id = id;

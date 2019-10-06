@@ -1,5 +1,10 @@
 package com.hellofit.kidozone.puzzleGame.dialog;
 
+/***
+ *  This class is for the image select dialog in puzzle game
+ *  @author Weiqiang Li
+ */
+
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;

@@ -4,8 +4,8 @@ package com.hellofit.kidozone.entity;
  *  The entity of School in the project
  *  Basically this class will be create in the map page
  *  To create the entity of school which is queried from Web Server
- *  @author  Mingzhe Liu
- *  @version  1.0
+ *  @author Mingzhe Liu
+ *  @version 1.0
  */
 
 public class SchoolInfo {
@@ -16,7 +16,8 @@ public class SchoolInfo {
     private String schoolPostcode;
     private Coordinate schoolCoordinate;
 
-    public SchoolInfo() {}
+    public SchoolInfo() {
+    }
 
     public SchoolInfo(String schoolName, String schoolPhone, String schoolAddress, String schoolSuburb, String schoolPostcode, Coordinate schoolCoordinate) {
         this.schoolName = schoolName;

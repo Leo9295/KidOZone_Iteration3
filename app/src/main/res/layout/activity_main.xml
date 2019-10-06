@@ -16,9 +16,9 @@
         android:layout_marginTop="3dp"
         android:background="@drawable/button_style6"
         android:fontFamily="sans-serif-medium"
-        android:textAllCaps="false"
         android:text="Puzzle Game"
         android:textAlignment="center"
+        android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="16sp" />
 
@@ -63,18 +63,18 @@
         android:layout_width="190dp"
         android:layout_height="110dp"
         android:layout_below="@+id/PuzzleGame"
-        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/lunchgame"/>
+        android:layout_marginTop="10dp"
+        android:background="@drawable/lunchgame" />
 
     <Button
         android:id="@+id/imageWasteGame"
         android:layout_width="190dp"
         android:layout_height="110dp"
         android:layout_below="@+id/LunchGame"
-        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/wastegame"/>
+        android:layout_marginTop="10dp"
+        android:background="@drawable/wastegame" />
 
     <Button
         android:id="@+id/aboutUsButton"

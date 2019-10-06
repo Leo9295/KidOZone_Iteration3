@@ -1,4 +1,5 @@
 package com.hellofit.kidozone.activityService;
+
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.widget.MediaController;
 
 import com.hellofit.kidozone.R;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WasteIntro extends AppCompatActivity {
@@ -51,6 +53,7 @@ public class WasteIntro extends AppCompatActivity {
         videoView.setVideoURI(Uri.parse(uri));
         videoView.setMediaController(mediaController);
         mediaController.setMediaPlayer(videoView);
+        mediaController.setVisibility(View.INVISIBLE);
         videoView.requestFocus();
         videoView.start();
     }

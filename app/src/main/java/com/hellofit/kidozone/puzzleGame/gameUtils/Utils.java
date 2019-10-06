@@ -1,5 +1,10 @@
 package com.hellofit.kidozone.puzzleGame.gameUtils;
 
+/***
+ *  This class is to split the image and show in screen
+ *  @author Weiqiang Li
+ */
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +16,6 @@ import com.hellofit.kidozone.puzzleGame.module.ImagePiece;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class Utils {

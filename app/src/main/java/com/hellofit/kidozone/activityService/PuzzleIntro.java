@@ -1,4 +1,5 @@
 package com.hellofit.kidozone.activityService;
+
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import com.hellofit.kidozone.puzzleGame.game.PuzzleGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PuzzleIntro  extends AppCompatActivity {
+public class PuzzleIntro extends AppCompatActivity {
     private VideoView videoView;
     private MediaController mediaController;
 
@@ -53,6 +54,7 @@ public class PuzzleIntro  extends AppCompatActivity {
         videoView.setVideoURI(Uri.parse(uri));
         videoView.setMediaController(mediaController);
         mediaController.setMediaPlayer(videoView);
+        mediaController.setVisibility(View.INVISIBLE);
         videoView.requestFocus();
         videoView.start();
     }

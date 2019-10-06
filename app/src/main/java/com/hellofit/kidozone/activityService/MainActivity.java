@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         buttonLunch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 mp.stop();
                 Intent intent = new Intent(MainActivity.this, LunchIntro.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
         buttonWaste.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 mp.stop();
                 Intent intent = new Intent(MainActivity.this, WasteIntro.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
         buttonPuzzle.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 mp.stop();
                 Intent intent = new Intent(MainActivity.this, PuzzleIntro.class);
                 startActivityForResult(intent, 1);
