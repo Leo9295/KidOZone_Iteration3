@@ -35,6 +35,9 @@ public class OpenVideo extends AppCompatActivity {
         });
     }
 
+    /**
+     * initial the video view and set the complete action: jump to the main page
+     */
     private void initView() {
         videoView = (VideoView) findViewById(R.id.videoView);
         init();

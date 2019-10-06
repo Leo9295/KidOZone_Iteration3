@@ -35,6 +35,10 @@ public class PuzzleIntro extends AppCompatActivity {
         });
     }
 
+
+    /**
+     * initial the video view and set the complete action: jump to game page
+     */
     private void initView() {
         videoView = (VideoView) findViewById(R.id.videoView);
         init();

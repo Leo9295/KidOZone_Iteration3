@@ -11,8 +11,8 @@
         android:id="@+id/backButton"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
         android:background="@drawable/back_button_pic" />
 
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="250dp"
         android:fontFamily="sans-serif-medium"
         android:text="TextView"
         android:textAllCaps="false"

@@ -19,15 +19,15 @@ import java.util.TimerTask;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private static float sNoncompatDensity;
-    private static float sNoncompatScaledDensity;
+    private static float nonCompatDensity;
+    private static float nonCompatScaledDensity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
 
-        setCustonDensity(WelcomeActivity.this, this.getApplication());
+        setCustomDensity(WelcomeActivity.this, this.getApplication());
 
 
         Timer timer = new Timer();
@@ -42,17 +42,20 @@ public class WelcomeActivity extends AppCompatActivity {
         timer.schedule(timerTask, 1000);
     }
 
-    private static void setCustonDensity(@NonNull Activity activity, @NonNull final Application application) {
+    /**
+     * A  method to set a custom Density based on 412 dp width
+     */
+    private static void setCustomDensity(@NonNull Activity activity, @NonNull final Application application) {
         final DisplayMetrics appDisplayMetrics = application.getResources().getDisplayMetrics();
 
-        if (sNoncompatDensity == 0) {
-            sNoncompatDensity = appDisplayMetrics.density;
-            sNoncompatScaledDensity = appDisplayMetrics.scaledDensity;
+        if (nonCompatDensity == 0) {
+            nonCompatDensity = appDisplayMetrics.density;
+            nonCompatScaledDensity = appDisplayMetrics.scaledDensity;
             application.registerComponentCallbacks(new ComponentCallbacks() {
                 @Override
                 public void onConfigurationChanged(Configuration newConfig) {
                     if (newConfig != null && newConfig.fontScale > 0) {
-                        sNoncompatScaledDensity = application.getResources().getDisplayMetrics().scaledDensity;
+                        nonCompatScaledDensity = application.getResources().getDisplayMetrics().scaledDensity;
                     }
                 }
 
@@ -63,7 +66,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         final float targetDensity = appDisplayMetrics.widthPixels / 412;
-        final float targetScaledDensity = targetDensity * (sNoncompatScaledDensity / sNoncompatDensity);
+        final float targetScaledDensity = targetDensity * (nonCompatScaledDensity / nonCompatDensity);
         final int targetDensityDpi = (int) (160 * targetDensity);
 
         appDisplayMetrics.density = targetDensity;
