@@ -1,35 +1,23 @@
 package com.hellofit.kidozone.activityService;
 
-import android.app.Activity;
-import android.app.Application;
-import android.content.ComponentCallbacks;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hellofit.kidozone.R;
 import com.hellofit.kidozone.common.RestClient;
-import com.hellofit.kidozone.common.SystemUtil;
 import com.hellofit.kidozone.entity.FoodInfo;
 import com.hellofit.kidozone.entity.WasteInfo;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     MediaPlayer mp;
+    int media_length;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,25 +47,11 @@ public class MainActivity extends AppCompatActivity {
         buttonAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mp.stop();
+                mp.pause();
+                media_length = mp.getCurrentPosition();
                 Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
+                intent.putExtra("mp_length", media_length);
                 startActivity(intent);
-            }
-        });
-
-        Button buttonLunch = (Button) findViewById(R.id.LunchGame);
-
-        buttonLunch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                mp.stop();
-                Intent intent = new Intent(MainActivity.this, LunchBox.class);
-                SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
-                Gson gson = new Gson();
-                String json = gson.toJson(foodInfos);
-                editor.putString("foodList", json);
-                editor.commit();
-                startActivityForResult(intent, 1);
             }
         });
 
@@ -86,29 +61,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, LunchBox.class);
+                Intent intent = new Intent(MainActivity.this, LunchBoxIntroActivity.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(foodInfos);
                 editor.putString("foodList", json);
                 editor.commit();
                 startActivity(intent);
-            }
-        });
-
-        Button buttonWaste = (Button) findViewById(R.id.WasteGame);
-
-        buttonWaste.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                mp.stop();
-                Intent intent = new Intent(MainActivity.this, Waste.class);
-                SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
-                Gson gson = new Gson();
-                String json = gson.toJson(wasteInfos);
-                editor.putString("wasteList", json);
-                editor.commit();
-                startActivityForResult(intent, 1);
             }
         });
 
@@ -124,17 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 String json = gson.toJson(wasteInfos);
                 editor.putString("wasteList", json);
                 editor.commit();
-                startActivityForResult(intent, 1);
-            }
-        });
-
-        Button buttonPuzzle = (Button) findViewById(R.id.PuzzleGame);
-
-        buttonPuzzle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                mp.stop();
-                Intent intent = new Intent(MainActivity.this, Puzzle.class);
                 startActivityForResult(intent, 1);
             }
         });
@@ -160,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     private class GetFoodEntityAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
-            foodInfos = RestClient.parseFoodJson(RestClient.getRandomFood());
+            foodInfos = RestClient.parseFoodJson(RestClient.getLunchBoxList());
             return null;
         }
     }
@@ -170,6 +118,26 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             wasteInfos = RestClient.parseWasteJson(RestClient.getRandomWaste());
             return null;
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (mp != null) {
+            mp.pause();
+            media_length = mp.getCurrentPosition();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mp != null) {
+            mp.seekTo(media_length);
+            mp.start();
         }
     }
 

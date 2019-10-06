@@ -27,16 +27,6 @@ public class Puzzle extends AppCompatActivity {
             }
         });
 
-        Button animal = (Button) findViewById(R.id.animal);
-
-        animal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Puzzle.this, PuzzleAnimal.class);
-                startActivity(intent);
-            }
-        });
-
         Button imageSport = (Button) findViewById(R.id.imageSport) ;
 
         imageSport.setOnClickListener(new View.OnClickListener() {
@@ -47,30 +37,9 @@ public class Puzzle extends AppCompatActivity {
             }
         });
 
-        Button sport = (Button) findViewById(R.id.sport);
-
-        sport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Puzzle.this, PuzzleSport.class);
-                startActivity(intent);
-            }
-        });
-
-
         Button imageView = (Button) findViewById(R.id.imageView);
 
         imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Puzzle.this, PuzzleView.class);
-                startActivity(intent);
-            }
-        });
-
-        Button view = (Button) findViewById(R.id.View);
-
-        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Puzzle.this, PuzzleView.class);

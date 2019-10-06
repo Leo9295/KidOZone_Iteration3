@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_pic">
 
     <ImageView
         android:id="@+id/description"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:background="@drawable/animal_title"
+        android:layout_height="190dp"
+        android:background="@drawable/puzzle_animals_title_pic"
         android:layout_centerHorizontal="true" />
 
 
@@ -54,8 +55,7 @@
         android:layout_toRightOf="@+id/ivSrcImg"
         android:onClick="addLevel"
         android:textAllCaps="false"
-        android:background="@drawable/button_style5"
-        android:text="Level up" />
+        android:background="@drawable/puzzle_level_up_btn_pic" />
 
     <Button
         android:id="@+id/btnReduceLevel"
@@ -68,8 +68,7 @@
         android:layout_toLeftOf="@+id/ivSrcImg"
         android:fontFamily="sans-serif-medium"
         android:onClick="reduceLevel"
-        android:text="Level down"
-        android:background="@drawable/button_style5"
+        android:background="@drawable/puzzle_level_down_btn_pic"
         android:textAllCaps="false" />
 
     <Button

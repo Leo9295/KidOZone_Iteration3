@@ -6,30 +6,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/iv_match_food_type"
+        android:layout_width="match_parent"
+        android:layout_height="75dp" />
 
     <TextView
-        android:id="@+id/textDes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="✖ ←   →   ❤"
-        android:fontFamily="sans-serif-medium"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:id="@+id/tv_match_food_type"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="FoodTypePlaceHolder"
+        android:layout_below="@id/iv_match_food_type" />
 
     <TextView
         android:id="@+id/foodName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textDes"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:layout_below="@+id/iv_match_food_type"
         android:fontFamily="sans-serif-medium"
-        android:text=""
+        android:text="FoodNamePlaceHolder"
         android:textAllCaps="false"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
 
     <Button
@@ -43,50 +42,61 @@
         android:background="@drawable/back_button_pic" />
 
 
-    <Button
-        android:id="@+id/finish"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/submit_button_pic" />
-
     <ImageView
-        android:id="@+id/lunchbox"
-        android:layout_width="262dp"
-        android:layout_height="217dp"
-        android:layout_below="@+id/Food"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        app:srcCompat="@drawable/lunchbox" />
-
-    <ImageView
-        android:id="@+id/Food"
+        android:id="@+id/iv_lb_match_food_pic"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:layout_below="@id/foodName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="50dp" />
 
-    <TextView
-        android:id="@+id/count"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+    <Button
+        android:id="@+id/btn_lb_match_start"
+        android:layout_height="70dp"
+        android:layout_width="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/foodName"
+        android:layout_marginTop="86dp"
+        android:text="Game Start!"/>
+
+    <Button
+        android:id="@+id/btn_lb_match_no"
+        android:layout_height="75dp"
+        android:layout_width="75dp"
+        android:text="No"
+        android:layout_below="@id/iv_lb_match_food_pic"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="45dp"/>
+
+    <Button
+        android:id="@+id/btn_lb_match_yes"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="45dp"
+        android:text="Yes"
+        android:layout_below="@id/iv_lb_match_food_pic"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="45dp"/>
+
+    <ImageView
+        android:id="@+id/iv_count_number"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="0/6"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="24sp" />
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/number_one"/>
 
-
+<!--
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="80dp"
         android:layout_toRightOf="@+id/Food"
+        android:layout_below="@id/foodName"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/like_button" />
@@ -96,11 +106,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/Food"
-        android:layout_marginTop="140dp"
+        android:layout_below="@id/foodName"
+        android:layout_marginTop="80dp"
         android:layout_marginRight="10dp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/dislike_button" />
+-->
 
 
 

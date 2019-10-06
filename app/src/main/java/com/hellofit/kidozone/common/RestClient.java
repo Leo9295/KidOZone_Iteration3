@@ -47,6 +47,32 @@ public class RestClient {
         return jsonString;
     }
 
+    public static String getLunchBoxList() {
+        final String methodPath = "com.kidozone.entity.foodinfo/findLunchboxFood";
+        URL url = null;
+        HttpURLConnection connection = null;
+        String jsonString = "";
+        try {
+            url = new URL(BASE_URL + methodPath);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setReadTimeout(10000);
+            connection.setConnectTimeout(15000);
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            Scanner scanner = new Scanner(connection.getInputStream());
+            while (scanner.hasNextLine()) {
+                jsonString += scanner.nextLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            connection.disconnect();
+        }
+
+        return jsonString;
+    }
+
     /**
      * To parse the json string of FoodInfo and return a list
      *

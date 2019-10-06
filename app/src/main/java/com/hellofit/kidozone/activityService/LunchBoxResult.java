@@ -1,33 +1,34 @@
 package com.hellofit.kidozone.activityService;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.hellofit.kidozone.R;
 import com.hellofit.kidozone.common.RestClient;
 import com.hellofit.kidozone.common.SystemUtil;
 import com.hellofit.kidozone.entity.FoodInfo;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 public class LunchBoxResult extends AppCompatActivity {
 
     private int score;
+
+    private ArrayList<FoodInfo> resultList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +37,12 @@ public class LunchBoxResult extends AppCompatActivity {
 
         Button backButton = (Button) findViewById(R.id.backButton);
 
+        resultList = new ArrayList<FoodInfo>();
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LunchBoxResult.this, LunchBox.class);
+                Intent intent = new Intent(LunchBoxResult.this, LunchBoxMatchActivity.class);
                 startActivityForResult(intent, 1);
             }
         });
@@ -51,8 +54,15 @@ public class LunchBoxResult extends AppCompatActivity {
         ImageView imageView5 = (ImageView) findViewById(R.id.imageFood5);
         ImageView imageView6 = (ImageView) findViewById(R.id.imageFood6);
 
-        Bundle bundle = getIntent().getExtras();
-        ArrayList<FoodInfo> resultList = (ArrayList<FoodInfo>) bundle.getSerializable("pickItemList");
+        // Load Food data from SharedPreferences
+        SharedPreferences sp = getSharedPreferences("SystemSP", MODE_PRIVATE);
+        String json = sp.getString("pickedList", null);
+        if (json != null) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<FoodInfo>>() {}.getType();
+            resultList = gson.fromJson(json, type);
+        }
+
         switch (resultList.size()) {
             case 1:
                 score = 60;

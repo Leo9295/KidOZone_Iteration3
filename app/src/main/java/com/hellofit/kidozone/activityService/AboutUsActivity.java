@@ -19,7 +19,11 @@ public class AboutUsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
 
+        Intent intent = getIntent();
+        int media_length = intent.getIntExtra("mp_length", 0);
+
         mp = MediaPlayer.create(AboutUsActivity.this, R.raw.background_music);
+        mp.seekTo(media_length);
         mp.start();
 
         Button btn_button = (Button) findViewById(R.id.backButton);
