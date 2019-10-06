@@ -39,18 +39,18 @@
         android:id="@+id/imageSport"
         android:layout_height="150dp"
         android:layout_width="150dp"
-        android:layout_marginTop="80dp"
         android:layout_marginLeft="20dp"
-        android:layout_below="@+id/animal"
+        android:layout_above="@+id/sport"
         android:background="@drawable/sport_puzzle_icon"/>
 
     <Button
         android:id="@+id/sport"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageSport"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginBottom="100dp"
+        android:layout_above="@+id/backButton"
         android:background="@drawable/button_style5"
         android:text="Australia sports"
         android:textAllCaps="false"
@@ -62,9 +62,9 @@
         android:layout_height="150dp"
         android:layout_width="150dp"
         android:layout_marginTop="80dp"
+        android:layout_above="@+id/View"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
-        android:layout_below="@+id/animal"
         android:background="@drawable/view_puzzle_icon"/>
 
 
@@ -73,10 +73,11 @@
         android:id="@+id/View"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
         android:layout_marginTop="5dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="100dp"
+        android:layout_above="@+id/backButton"
         android:background="@drawable/button_style5"
         android:text="Australia attractions"
         android:textAllCaps="false"
