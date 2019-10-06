@@ -71,7 +71,8 @@ public class LunchBox extends AppCompatActivity {
         String json = sp.getString("foodList", null);
         if (json != null) {
             Gson gson = new Gson();
-            Type type = new TypeToken<ArrayList<FoodInfo>>() {}.getType();
+            Type type = new TypeToken<ArrayList<FoodInfo>>() {
+            }.getType();
             foodInfos = gson.fromJson(json, type);
         }
 

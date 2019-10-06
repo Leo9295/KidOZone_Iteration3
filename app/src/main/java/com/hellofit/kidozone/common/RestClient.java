@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import com.hellofit.kidozone.entity.*;
 
 public class RestClient {
@@ -53,7 +54,7 @@ public class RestClient {
      * @param foodJson
      * @return list of foodInfo
      */
-    public static ArrayList<FoodInfo> parseFoodJson (String foodJson) {
+    public static ArrayList<FoodInfo> parseFoodJson(String foodJson) {
         ArrayList<FoodInfo> foodInfos = new ArrayList<FoodInfo>();
         try {
             JSONArray jsonArray = new JSONArray(foodJson);
@@ -135,6 +136,7 @@ public class RestClient {
 
     /**
      * Using the suburb name to retrieve the school which locate in that suburb
+     *
      * @param suburbName
      * @return json string
      */
@@ -143,7 +145,7 @@ public class RestClient {
         HttpURLConnection connection = null;
         String jsonString = "";
         suburbName = suburbName.toUpperCase();
-        try{
+        try {
             url = new URL(BASE_URL + "com.kidozone.entity.schoolinfo/findSchoolBySuburb/" + suburbName);
             connection = (HttpURLConnection) url.openConnection();
             connection.setReadTimeout(10000);
@@ -155,7 +157,7 @@ public class RestClient {
             while (scanner.hasNextLine()) {
                 jsonString += scanner.nextLine();
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             connection.disconnect();
@@ -166,14 +168,15 @@ public class RestClient {
 
     /**
      * Using the json String to parse to the SchoolInfo class
+     *
      * @param schoolJson
      * @return The array list containing all school entities
      */
-    public static List<SchoolInfo> parseSchoolJson(String schoolJson){
+    public static List<SchoolInfo> parseSchoolJson(String schoolJson) {
         List<SchoolInfo> schoolInfos = new ArrayList<SchoolInfo>();
-        try{
+        try {
             JSONArray jsonArray = new JSONArray(schoolJson);
-            for (int i = 0; i < jsonArray.length(); i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
                 SchoolInfo info = new SchoolInfo();
                 info.setSchoolName(obj.getString("school_name"));
@@ -196,6 +199,7 @@ public class RestClient {
 
     /**
      * According to the food id, retrieve the picture from the database
+     *
      * @param foodId
      * @return
      */
@@ -216,7 +220,7 @@ public class RestClient {
             while (scanner.hasNextLine()) {
                 textResult += scanner.nextLine();
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             connection.disconnect();
@@ -226,6 +230,7 @@ public class RestClient {
 
     /**
      * According to the waste id, retrieve the picture from the database
+     *
      * @param wasteId
      * @return
      */
@@ -246,7 +251,7 @@ public class RestClient {
             while (scanner.hasNextLine()) {
                 textResult += scanner.nextLine();
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             connection.disconnect();

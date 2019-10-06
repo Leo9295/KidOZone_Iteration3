@@ -40,7 +40,7 @@ public class PuzzleView extends AppCompatActivity implements PuzzleGame.GameStat
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 mp.stop();
                 Intent intent = new Intent(PuzzleView.this, Puzzle.class);
                 startActivityForResult(intent, 1);

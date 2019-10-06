@@ -1,40 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_pic">
+
+    <Button
+        android:id="@+id/btnAddLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLevel"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/ivSrcImg"
+        android:background="@drawable/button_style5"
+        android:onClick="addLevel"
+        android:text="Level up"
+        android:textAllCaps="false" />
+
+
+    <Button
+        android:id="@+id/btnReduceLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLevel"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/ivSrcImg"
+        android:background="@drawable/button_style5"
+        android:fontFamily="sans-serif-medium"
+        android:onClick="reduceLevel"
+        android:text="Level down"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/back_button_pic" />
+
+    <ImageView
+        android:id="@+id/ivSrcImg"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_below="@+id/tvLevel"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:onClick="changeImage" />
 
     <ImageView
         android:id="@+id/description"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:background="@drawable/animal_title"
-        android:layout_centerHorizontal="true" />
-
-
-    <com.hellofit.kidozone.puzzleGame.ui.PuzzleLayout
-        android:id="@+id/puzzleLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/description"
-        android:layout_marginTop="20dp" />
-
-    <ImageView
-        android:id="@+id/ivSrcImg"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:onClick="changeImage"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/tvLevel"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ivSrcImg"
-        android:layout_centerInParent="true"
-        android:fontFamily="sans-serif-medium"
-        android:text="Click to pick image"
-        android:textSize="14sp" />
+        android:layout_height="85dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/animal_title" />
 
     <TextView
         android:id="@+id/tvLevel"
@@ -45,42 +67,21 @@
         android:fontFamily="sans-serif-medium"
         android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/btnAddLevel"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvLevel"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/ivSrcImg"
-        android:onClick="addLevel"
-        android:textAllCaps="false"
-        android:background="@drawable/button_style5"
-        android:text="Level up" />
-
-    <Button
-        android:id="@+id/btnReduceLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvLevel"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="-2dp"
-        android:layout_marginRight="1dp"
-        android:layout_toLeftOf="@+id/ivSrcImg"
+        android:layout_below="@+id/ivSrcImg"
+        android:layout_centerInParent="true"
         android:fontFamily="sans-serif-medium"
-        android:onClick="reduceLevel"
-        android:text="Level down"
-        android:background="@drawable/button_style5"
-        android:textAllCaps="false" />
+        android:text="Click to pick image"
+        android:textSize="14sp" />
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:background="@drawable/back_button_pic"/>
-
+    <com.hellofit.kidozone.puzzleGame.ui.PuzzleLayout
+        android:id="@+id/puzzleLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/description"
+        android:layout_marginTop="20dp" />
 
 
 </RelativeLayout>

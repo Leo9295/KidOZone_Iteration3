@@ -37,7 +37,7 @@ public class Puzzle extends AppCompatActivity {
             }
         });
 
-        Button imageSport = (Button) findViewById(R.id.imageSport) ;
+        Button imageSport = (Button) findViewById(R.id.imageSport);
 
         imageSport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +82,7 @@ public class Puzzle extends AppCompatActivity {
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(Puzzle.this, MainActivity.class);
                 startActivityForResult(intent, 1);
             }

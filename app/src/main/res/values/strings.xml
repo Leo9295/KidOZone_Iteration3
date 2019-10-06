@@ -8,8 +8,7 @@
     <string name="member_about_us_2">Lee (Developer)</string>
     <string name="member_about_us_3">Eldo (Business Analyst)</string>
     <string name="member_about_us_4">Hindu (Data Scientist)</string>
-
-
+    <string name="title_activity_open_video">OpenVideo</string>
 
 
 </resources>

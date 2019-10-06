@@ -4,8 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background_pic">
 
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/back_button_pic" />
+
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/submit_button_pic" />
+
+
+    <ImageView
+        android:id="@+id/lunchbox"
+        android:layout_width="262dp"
+        android:layout_height="217dp"
+        android:layout_below="@+id/Food"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@drawable/lunchbox" />
+
+
+    <ImageView
+        android:id="@+id/Food"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp" />
 
     <TextView
         android:id="@+id/textDes"
@@ -13,8 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="✖ ←   →   ❤"
         android:fontFamily="sans-serif-medium"
+        android:text="✖ ←   →   ❤"
         android:textAllCaps="false"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -31,52 +70,14 @@
         android:textAllCaps="false"
         android:textSize="18sp" />
 
-
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/back_button_pic" />
-
-
-    <Button
-        android:id="@+id/finish"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/submit_button_pic" />
-
-    <ImageView
-        android:id="@+id/lunchbox"
-        android:layout_width="262dp"
-        android:layout_height="217dp"
-        android:layout_below="@+id/Food"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        app:srcCompat="@drawable/lunchbox" />
-
-    <ImageView
-        android:id="@+id/Food"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp" />
-
     <TextView
         android:id="@+id/count"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="0/6"
         android:fontFamily="sans-serif-medium"
+        android:text="0/6"
         android:textSize="24sp" />
 
 
@@ -95,14 +96,12 @@
         android:id="@+id/animation_view2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/Food"
         android:layout_marginTop="140dp"
         android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/Food"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/dislike_button" />
-
-
 
 
 </RelativeLayout>

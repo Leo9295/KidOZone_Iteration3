@@ -56,7 +56,8 @@ public class Waste extends AppCompatActivity {
         String json = sp.getString("wasteList", null);
         if (json != null) {
             Gson gson = new Gson();
-            Type type = new TypeToken<ArrayList<WasteInfo>>() {}.getType();
+            Type type = new TypeToken<ArrayList<WasteInfo>>() {
+            }.getType();
             wasteInfos = gson.fromJson(json, type);
         }
 
@@ -74,7 +75,7 @@ public class Waste extends AppCompatActivity {
         iv_wasteImge.startAnimation(shake);
 
         score = 100;
-        tv_userScore.setText("Score: "+ score);
+        tv_userScore.setText("Score: " + score);
 
         lottieAnimationView = (LottieAnimationView) findViewById(R.id.animation_view4);
     }
@@ -116,7 +117,7 @@ public class Waste extends AppCompatActivity {
 
                     int orientation = getOrientation(dx, dy);
                     // From 1 - 10 times of playing
-                    if(listIndex < wasteInfos.size()) {
+                    if (listIndex < wasteInfos.size()) {
                         switch (orientation) {
                             // To right -> Yellow Bin
                             case 'r':

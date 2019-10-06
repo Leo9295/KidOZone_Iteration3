@@ -11,23 +11,41 @@ public class FoodInfo implements Parcelable, java.io.Serializable {
     private String categoryName;
     private String foodImagePath;
 
-    public String getId() { return id; }
+    public String getId() {
+        return id;
+    }
 
-    public void setId(String id) { this.id = id; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public String getFoodName() { return foodName; }
+    public String getFoodName() {
+        return foodName;
+    }
 
-    public void setFoodName(String foodName) { this.foodName = foodName; }
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
+    }
 
-    public String getCategoryName() { return categoryName; }
+    public String getCategoryName() {
+        return categoryName;
+    }
 
-    public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 
-    public String getFoodImage() { return foodImagePath; }
+    public String getFoodImage() {
+        return foodImagePath;
+    }
 
-    public void setFoodImage(String foodImagePath) { this.foodImagePath = foodImagePath; }
+    public void setFoodImage(String foodImagePath) {
+        this.foodImagePath = foodImagePath;
+    }
 
-    public FoodInfo() { super(); }
+    public FoodInfo() {
+        super();
+    }
 
     public FoodInfo(String id, String foodName, String categoryName, String foodImagePath) {
         this.id = id;
@@ -50,6 +68,7 @@ public class FoodInfo implements Parcelable, java.io.Serializable {
 
     /**
      * write the value into the Parcel
+     *
      * @param parcel
      * @param i
      */

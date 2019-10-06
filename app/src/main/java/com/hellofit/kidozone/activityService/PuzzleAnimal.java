@@ -48,7 +48,6 @@ public class PuzzleAnimal extends AppCompatActivity implements PuzzleGame.GameSt
         });
 
 
-
     }
 
     private void initView() {

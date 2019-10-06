@@ -1,5 +1,10 @@
 package com.hellofit.kidozone.puzzleGame.ui;
 
+/***
+ *  This class is for the puzzle layout, how to achieve image view exchange function
+ *  @author Weiqiang Li
+ */
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -116,7 +121,7 @@ public class PuzzleLayout extends FrameLayout implements View.OnClickListener {
     }
 
     /**
-     *Sort the ImagePieces
+     * Sort the ImagePieces
      */
     private void sortImagePieces() {
         try {
@@ -185,7 +190,7 @@ public class PuzzleLayout extends FrameLayout implements View.OnClickListener {
      */
     public boolean addCount() {
         mCount++;
-        if (mCount > 3) {
+        if (mCount > 4) {
             mCount--;
             return false;
         }
