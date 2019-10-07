@@ -3,6 +3,7 @@ package com.hellofit.kidozone.activityService;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -20,8 +21,9 @@ public class AboutUsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about_us);
 
         Intent intent = getIntent();
-        int media_length = intent.getIntExtra("mp_length", 0);
-        final boolean isMute = intent.getBooleanExtra("isMute", false);
+        SharedPreferences sp = getSharedPreferences("SystemSP", MODE_PRIVATE);
+        int media_length = sp.getInt("mp_length", 0);
+        final boolean isMute = sp.getBoolean("isMute", false);
 
         if (!isMute) {
             mp = MediaPlayer.create(AboutUsActivity.this, R.raw.background_music);

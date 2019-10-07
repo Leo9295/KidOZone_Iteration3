@@ -43,15 +43,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button imagePuzzle = (Button) findViewById(R.id.imagePuzzleGame);
+        Button imageWaste = (Button) findViewById(R.id.imageWasteGame);
+        Button imageLunch = (Button) findViewById(R.id.imageLunchGame);
+        Button buttonAboutUs = (Button) findViewById(R.id.aboutUsButton);
+        final Button btn_mute = (Button) findViewById(R.id.btn_main_mute);
+
         foodInfos = new ArrayList<FoodInfo>();
         wasteInfos = new ArrayList<WasteInfo>();
 
+        SharedPreferences sp = getSharedPreferences("SystemSP", MODE_PRIVATE);
         mp = MediaPlayer.create(MainActivity.this, R.raw.background_music);
-        mp.start();
-
-        isMute = false;
-
-        Button buttonAboutUs = (Button) findViewById(R.id.aboutUsButton);
+        isMute = sp.getBoolean("isMute", false);
+        if (!isMute) {
+            Glide.with(MainActivity.this).asBitmap().load(R.drawable.btn_main_mute).into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    Drawable drawable = new BitmapDrawable(resource);
+                    btn_mute.setBackground(drawable);
+                }
+            });
+        } else {
+            mp.stop();
+            Glide.with(MainActivity.this).asBitmap().load(R.drawable.btn_main_muted).into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    Drawable drawable = new BitmapDrawable(resource);
+                    btn_mute.setBackground(drawable);
+                }
+            });
+        }
 
         buttonAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,13 +80,13 @@ public class MainActivity extends AppCompatActivity {
                 mp.pause();
                 media_length = mp.getCurrentPosition();
                 Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
-                intent.putExtra("isMute", isMute);
-                intent.putExtra("mp_length", media_length);
+                SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
+                editor.putBoolean("isMute", isMute);
+                editor.putInt("mp_length", media_length);
+                editor.commit();
                 startActivity(intent);
             }
         });
-
-        Button imageLunch = (Button) findViewById(R.id.imageLunchGame);
 
         imageLunch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,12 +97,12 @@ public class MainActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 String json = gson.toJson(foodInfos);
                 editor.putString("foodList", json);
+                editor.putBoolean("isMute", isMute);
                 editor.commit();
                 startActivity(intent);
             }
         });
 
-        Button imageWaste = (Button) findViewById(R.id.imageWasteGame);
 
         imageWaste.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,23 +113,23 @@ public class MainActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 String json = gson.toJson(wasteInfos);
                 editor.putString("wasteList", json);
+                editor.putBoolean("isMute", isMute);
                 editor.commit();
                 startActivityForResult(intent, 1);
             }
         });
-
-        Button imagePuzzle = (Button) findViewById(R.id.imagePuzzleGame);
 
         imagePuzzle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mp.stop();
                 Intent intent = new Intent(MainActivity.this, PuzzleIntroActivity.class);
+                SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
+                editor.putBoolean("isMute", isMute);
+                editor.commit();
                 startActivity(intent);
             }
         });
-
-        final Button btn_mute = (Button) findViewById(R.id.btn_main_mute);
 
         btn_mute.setOnClickListener(new View.OnClickListener() {
             @Override
