@@ -181,11 +181,11 @@ public class PuzzleLayout extends FrameLayout implements View.OnClickListener {
     }
 
     /**
-     * Add count maximum is 3
+     * Add count maximum is 4
      */
     public boolean addCount() {
         mCount++;
-        if (mCount > 3) {
+        if (mCount > 4) {
             mCount--;
             return false;
         }

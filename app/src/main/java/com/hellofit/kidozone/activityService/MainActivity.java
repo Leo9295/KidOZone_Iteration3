@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, LunchBoxMatchActivity.class);
+                Intent intent = new Intent(MainActivity.this, LunchBoxIntroActivity.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(foodInfos);
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, Waste.class);
+                Intent intent = new Intent(MainActivity.this, WasteIntroActivity.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(wasteInfos);
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, Puzzle.class);
+                Intent intent = new Intent(MainActivity.this, PuzzleIntroActivity.class);
                 startActivity(intent);
             }
         });

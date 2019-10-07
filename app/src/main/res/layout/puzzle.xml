@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_pic">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -20,7 +21,8 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/imageView3"
         android:layout_marginTop="40dp"
-        android:background="@drawable/puzzle_animal_btn_pic" />
+        android:background="@drawable/puzzle_animal_btn_pic"
+        />
 
     <Button
         android:id="@+id/imageSport"

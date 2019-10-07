@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activityService.LunchBoxSelectActivity">
+    tools:context=".activityService.LunchBoxSelectActivity"
+    android:background="@drawable/background_pic">
 
     <TextView
         android:id="@+id/tv_lb_select_title"
