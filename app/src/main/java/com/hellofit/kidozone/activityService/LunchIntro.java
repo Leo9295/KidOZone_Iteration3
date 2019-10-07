@@ -27,13 +27,13 @@ public class LunchIntro extends AppCompatActivity {
 
         Button skip = (Button) findViewById(R.id.skip);
 
-        skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LunchIntro.this, LunchBox.class);
-                startActivity(intent);
-            }
-        });
+      //  skip.setOnClickListener(new View.OnClickListener() {
+         //   @Override
+   //         public void onClick(View view) {
+       //         Intent intent = new Intent(LunchIntro.this, LunchBoxRe.class);
+    //            startActivity(intent);
+   //         }
+   //     });
     }
 
     /**
@@ -42,13 +42,13 @@ public class LunchIntro extends AppCompatActivity {
     private void initView() {
         videoView = (VideoView) findViewById(R.id.videoView);
         init();
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                Intent intent = new Intent(LunchIntro.this, LunchBox.class);
-                startActivity(intent);
-            }
-        });
+      //  videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+       //     @Override
+        //    public void onCompletion(MediaPlayer mp) {
+         //       Intent intent = new Intent(LunchIntro.this, LunchBox.class);
+            //    startActivity(intent);
+         //   }
+      //  });
     }
 
     private void init() {

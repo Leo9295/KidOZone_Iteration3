@@ -24,12 +24,6 @@
             android:name=".activityService.WasteIntro"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activityService.LunchBox"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activityService.LunchBoxResult"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activityService.Waste"
             android:screenOrientation="portrait" />
         <activity
