@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Intent intent = new Intent(MainActivity.this, LunchBoxIntroActivity.class);
+                Intent intent = new Intent(MainActivity.this, LunchBoxMatchActivity.class);
                 SharedPreferences.Editor editor = getSharedPreferences("SystemSP", MODE_PRIVATE).edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(foodInfos);

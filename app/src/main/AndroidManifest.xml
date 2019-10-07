@@ -10,8 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activityService.LunchBoxSelectActivity"></activity>
-        <activity android:name=".activityService.LunchBoxIntroActivity" />
+        <activity android:name=".activityService.LunchBoxSelectActivity" />
         <activity android:name=".activityService.AboutUsActivity" />
         <activity
             android:name=".activityService.LunchBoxMatchActivity"/>
