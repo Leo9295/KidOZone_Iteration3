@@ -9,39 +9,39 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/puzzle_title_pic" />
+        android:layout_width="375dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/puzzle_title" />
 
     <Button
         android:id="@+id/imageAnimal"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="160dp"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/imageView3"
         android:layout_marginTop="40dp"
-        android:background="@drawable/puzzle_animal_btn_pic"
+        android:background="@drawable/puzzle_button_animal"
         />
 
     <Button
         android:id="@+id/imageSport"
-        android:layout_height="150dp"
-        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_width="160dp"
         android:layout_marginTop="80dp"
         android:layout_marginLeft="20dp"
         android:layout_below="@+id/imageAnimal"
-        android:background="@drawable/puzzle_sport_btn_pic"/>
+        android:background="@drawable/puzzle_button_sport"/>
 
     <Button
         android:id="@+id/imageView"
-        android:layout_height="150dp"
-        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_width="160dp"
         android:layout_marginTop="80dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_below="@+id/imageAnimal"
-        android:background="@drawable/puzzle_attractions_btn_pic"/>
+        android:background="@drawable/puzzle_button_attraction"/>
 
     <Button
         android:id="@+id/backButton"

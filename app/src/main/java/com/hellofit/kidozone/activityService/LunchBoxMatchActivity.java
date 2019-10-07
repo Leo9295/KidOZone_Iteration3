@@ -54,7 +54,6 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
         final ImageView iv_userPickedSum = (ImageView) findViewById(R.id.iv_count_number);
         final ImageView iv_foodType = (ImageView) findViewById(R.id.iv_match_food_type);
         final TextView tv_foodName = (TextView) findViewById(R.id.foodName);
-        final TextView tv_foodType = (TextView) findViewById(R.id.tv_match_food_type);
 
         // Set component invisible at beginning
         btn_yes.setVisibility(View.INVISIBLE);
@@ -102,7 +101,7 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
                 setFoodNameAndImage(currentFoodIndex, iv_foodImage, tv_foodName);
                 iv_foodImage.startAnimation(shake);
                 // answers
-                setQuestionImage(currentFoodIndex, tv_foodType);
+                setQuestionImage(currentFoodIndex, iv_foodType);
 
             }
         });
@@ -112,7 +111,7 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 answer = 'r';
-                clickButton(iv_foodImage, tv_foodName, tv_foodType);
+                clickButton(iv_foodImage, tv_foodName, iv_foodType, iv_userPickedSum);
                 answer = ' ';
             }
         });
@@ -122,26 +121,26 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 answer = 'l';
-                clickButton(iv_foodImage, tv_foodName, tv_foodType);
+                clickButton(iv_foodImage, tv_foodName, iv_foodType, iv_userPickedSum);
                 answer = ' ';
             }
         });
     }
 
-    private void clickButton(ImageView imageView, TextView textView, TextView textView1) {
+    private void clickButton(ImageView foodImage, TextView foodName, ImageView typeImage, ImageView userPicked) {
         if ((question == 0 && answer == 'l') || (question == 1 && answer == 'r')) {
             //
             if (pickedList.size() < 5) {
                 pickedList.add(foodInfoList.get(currentFoodIndex));
-
                 while (true) {
                     currentFoodIndex = getRandomNum(0, 29);
                     if (!pickedList.contains(foodInfoList.get(currentFoodIndex))) {
-                        setFoodNameAndImage(currentFoodIndex, imageView, textView);
-                        setQuestionImage(currentFoodIndex, textView1);
+                        setFoodNameAndImage(currentFoodIndex, foodImage, foodName);
+                        setQuestionImage(currentFoodIndex, typeImage);
                         break;
                     }
                 }
+                setPickedNumImage(userPicked, pickedList.size());
             }
             // Size of pickedList has reached 5, stop the game, going to next stage
             else {
@@ -150,12 +149,12 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
         } else {
             // Size of pickedList is not enough 6, continue the game
             if (pickedList.size() < 6) {
-                showAlertDialog("Opps..Thinking Carefully", "Try Next One", true);
+                showAlertDialog("Opps..Think it Carefully", "Try Next One", true);
                 while (true) {
                     currentFoodIndex = getRandomNum(0, 29);
                     if (!pickedList.contains(foodInfoList.get(currentFoodIndex))) {
-                        setFoodNameAndImage(currentFoodIndex, imageView, textView);
-                        setQuestionImage(currentFoodIndex, textView1);
+                        setFoodNameAndImage(currentFoodIndex, foodImage, foodName);
+                        setQuestionImage(currentFoodIndex, typeImage);
                         break;
                     }
                 }
@@ -163,14 +162,43 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
         }
     }
 
-    private void setQuestionImage(int foodIndex, TextView textView) {
+    private void setPickedNumImage(ImageView userPicked, int size) {
+        switch (size) {
+            case 0:
+                Glide.with(LunchBoxMatchActivity.this).load(R.drawable.count_number_0).into(userPicked);
+                break;
+            case 1:
+                Glide.with(LunchBoxMatchActivity.this).load(R.drawable.count_number_1).into(userPicked);
+                break;
+            case 2:
+                Glide.with(LunchBoxMatchActivity.this).load(R.drawable.count_number_2).into(userPicked);
+                break;
+            case 3:
+                Glide.with(LunchBoxMatchActivity.this).load(R.drawable.count_number_3).into(userPicked);
+                break;
+            case 4:
+                Glide.with(LunchBoxMatchActivity.this).load(R.drawable.count_number_4).into(userPicked);
+                break;
+            case 5:
+                Glide.with(LunchBoxMatchActivity.this).load(R.drawable.count_number_5).into(userPicked);
+                break;
+            case 6:
+                Glide.with(LunchBoxMatchActivity.this).load(R.drawable.count_number_6).into(userPicked);
+                break;
+            default:
+                Glide.with(LunchBoxMatchActivity.this).load(R.drawable.count_number_9).into(userPicked);
+                break;
+        }
+    }
+
+    private void setQuestionImage(int foodIndex, ImageView imageView) {
         question = getRandomNum(0, 1);
         if (question == 1) {
-            setFoodTypeImage(indexOfFoodCategory(foodInfoList.get(foodIndex).getCategoryName()), textView);
+            setFoodTypeImage(indexOfFoodCategory(foodInfoList.get(foodIndex).getCategoryName()), imageView);
         } else {
-            ArrayList<Integer> temp = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 3, 4, 5, 6));
+            ArrayList<Integer> temp = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 3, 4, 5));
             temp.remove(indexOfFoodCategory(foodInfoList.get(foodIndex).getCategoryName()));
-            setFoodTypeImage(temp.get(getRandomNum(0, temp.size())), textView);
+            setFoodTypeImage(temp.get(getRandomNum(0, temp.size() - 1)), imageView);
         }
     }
 
@@ -197,28 +225,25 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
         normalDialog.show();
     }
 
-    private void setFoodTypeImage(int typeNum, TextView textView) {
+    private void setFoodTypeImage(int typeNum, ImageView imageView) {
         switch (typeNum) {
             case 0:
-                textView.setText("Fruit?");
+                Glide.with(this).load(R.drawable.lunchbox_title_fruit).into(imageView);
                 break;
             case 1:
-                textView.setText("Vegetable?");
+                Glide.with(this).load(R.drawable.lunchbox_title_vegetable).into(imageView);
                 break;
             case 2:
-                textView.setText("Diary Product?");
+                Glide.with(this).load(R.drawable.lunchbox_title_diary_product).into(imageView);
                 break;
             case 3:
-                textView.setText("Meat?");
+                Glide.with(this).load(R.drawable.lunchbox_title_meat).into(imageView);
                 break;
             case 4:
-                textView.setText("Grain?");
+                Glide.with(this).load(R.drawable.lunchbox_title_grain).into(imageView);
                 break;
             case 5:
-                textView.setText("Drink?");
-                break;
-            default:
-                textView.setText("Junk Food?");
+                Glide.with(this).load(R.drawable.lunchbox_title_drink).into(imageView);
                 break;
         }
     }
@@ -237,9 +262,8 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
                 return 4;
             case "drink":
                 return 5;
-            default:
-                return 6;
         }
+        return 0;
     }
 
     /**

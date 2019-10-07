@@ -1,5 +1,6 @@
 package com.hellofit.kidozone.activityService;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -22,6 +23,7 @@ import com.google.gson.reflect.TypeToken;
 import com.hellofit.kidozone.R;
 import com.hellofit.kidozone.entity.WasteInfo;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.lang.reflect.Type;
@@ -37,6 +39,7 @@ public class Waste extends AppCompatActivity {
     // The list to contain the waste entity which using in the game
     private ArrayList<WasteInfo> wasteInfos;
 
+    ImageView iv_wasteScore;
     LottieAnimationView lottieAnimationView;
 
     @Override
@@ -50,6 +53,7 @@ public class Waste extends AppCompatActivity {
         TextView tv_wasteName = (TextView) findViewById(R.id.rubbishName);
         ImageView iv_wasteImge = (ImageView) findViewById(R.id.rubbish);
         TextView tv_userScore = (TextView) findViewById(R.id.wasteScore);
+        iv_wasteScore = (ImageView) findViewById(R.id.iv_waste_score);
 
         // Load Waste data from SharedPreferences
         SharedPreferences sp = getSharedPreferences("SystemSP", MODE_PRIVATE);
@@ -63,11 +67,27 @@ public class Waste extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Waste.this, MainActivity.class);
-                startActivityForResult(intent, 1);
+                AlertDialog.Builder normalDialog = new AlertDialog.Builder(Waste.this);
+//              normalDialog.setIcon(R.drawable.icon_dialog);
+                normalDialog.setTitle("").setMessage("You really want to quit now?");
+                normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Waste.this, MainActivity.class);
+                        startActivityForResult(intent, 1);
+                    }
+                });
+                normalDialog.setNegativeButton("I click wrong button", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                normalDialog.show();
             }
         });
 
+        iv_wasteScore.setVisibility(View.GONE);
         tv_wasteName.setText(wasteInfos.get(0).getWasteName());
         Glide.with(this).load(wasteInfos.get(0).getWasteImage()).into(iv_wasteImge);
         Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
@@ -86,7 +106,9 @@ public class Waste extends AppCompatActivity {
         TextView tv_wasteName = (TextView) findViewById(R.id.rubbishName);
 
         if (listIndex == 0) {
-            Glide.with(this).load(R.drawable.fivestar).into(lottieAnimationView);
+            lottieAnimationView.setVisibility(View.GONE);
+            iv_wasteScore.setVisibility(View.VISIBLE);
+            Glide.with(this).load(R.drawable.fivestar).into(iv_wasteScore);
         }
 
         float x = event.getX();
@@ -138,6 +160,7 @@ public class Waste extends AppCompatActivity {
                                         tv_wasteName.setText("");
                                         break;
                                     }
+                                    mp1.release();
                                 } else {
                                     MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.wrong);
                                     mp1.start();
@@ -152,6 +175,7 @@ public class Waste extends AppCompatActivity {
                                         tv_userScore.startAnimation(shake);
                                         setStarPic(score);
                                     }
+                                    mp1.release();
                                 }
                                 break;
                             // To Left -> Red Bin
@@ -174,6 +198,7 @@ public class Waste extends AppCompatActivity {
                                         tv_wasteName.setText("");
                                         break;
                                     }
+                                    mp1.release();
                                 } else {
                                     MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.wrong);
                                     mp1.start();
@@ -187,6 +212,7 @@ public class Waste extends AppCompatActivity {
                                         Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake_text);
                                         tv_userScore.startAnimation(shake);
                                         setStarPic(score);
+                                        mp1.release();
                                     }
                                 }
                                 break;
@@ -210,6 +236,7 @@ public class Waste extends AppCompatActivity {
                                         tv_wasteName.setText("");
                                         break;
                                     }
+                                    mp1.release();
                                 } else {
                                     MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.wrong);
                                     mp1.start();
@@ -224,6 +251,7 @@ public class Waste extends AppCompatActivity {
                                         tv_userScore.startAnimation(shake);
                                         setStarPic(score);
                                     }
+                                    mp1.release();
                                 }
                                 break;
                         }
@@ -256,19 +284,19 @@ public class Waste extends AppCompatActivity {
 
     private void setStarPic(int score) {
         if (score >= 80) {
-            Glide.with(this).load(R.drawable.fivestar).into(lottieAnimationView);
+            Glide.with(this).load(R.drawable.fivestar).into(iv_wasteScore);
         }
         if ((score < 80) && (score >= 60)) {
-            Glide.with(this).load(R.drawable.fourstar).into(lottieAnimationView);
+            Glide.with(this).load(R.drawable.fourstar).into(iv_wasteScore);
         }
         if (score < 60 && score >= 40) {
-            Glide.with(this).load(R.drawable.threestar).into(lottieAnimationView);
+            Glide.with(this).load(R.drawable.threestar).into(iv_wasteScore);
         }
         if (score < 40 && score >= 20) {
-            Glide.with(this).load(R.drawable.twostar).into(lottieAnimationView);
+            Glide.with(this).load(R.drawable.twostar).into(iv_wasteScore);
         }
         if (score < 20) {
-            Glide.with(this).load(R.drawable.onestar).into(lottieAnimationView);
+            Glide.with(this).load(R.drawable.onestar).into(iv_wasteScore);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.hellofit.kidozone.activityService;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.hellofit.kidozone.puzzleGame.dialog.SuccessDialog;
 import com.hellofit.kidozone.puzzleGame.game.PuzzleGame;
 import com.hellofit.kidozone.puzzleGame.ui.PuzzleLayout;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PuzzleSport extends AppCompatActivity implements PuzzleGame.GameStateListener {
@@ -41,9 +43,24 @@ public class PuzzleSport extends AppCompatActivity implements PuzzleGame.GameSta
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                mp.stop();
-                Intent intent = new Intent(PuzzleSport.this, Puzzle.class);
-                startActivityForResult(intent, 1);
+                AlertDialog.Builder normalDialog = new AlertDialog.Builder(PuzzleSport.this);
+//              normalDialog.setIcon(R.drawable.icon_dialog);
+                normalDialog.setTitle("").setMessage("You really want to quit now?");
+                normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mp.stop();
+                        Intent intent = new Intent(PuzzleSport.this, Puzzle.class);
+                        startActivityForResult(intent, 1);
+                    }
+                });
+                normalDialog.setNegativeButton("I click wrong button", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                normalDialog.show();
             }
         });
     }

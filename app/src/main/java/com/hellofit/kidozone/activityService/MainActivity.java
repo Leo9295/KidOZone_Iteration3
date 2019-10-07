@@ -2,16 +2,24 @@ package com.hellofit.kidozone.activityService;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.gson.Gson;
 import com.hellofit.kidozone.R;
 import com.hellofit.kidozone.common.RestClient;
 import com.hellofit.kidozone.entity.FoodInfo;
 import com.hellofit.kidozone.entity.WasteInfo;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
@@ -28,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     MediaPlayer mp;
     int media_length;
+    boolean isMute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         mp = MediaPlayer.create(MainActivity.this, R.raw.background_music);
         mp.start();
 
+        isMute = false;
+
         Button buttonAboutUs = (Button) findViewById(R.id.aboutUsButton);
 
         buttonAboutUs.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 mp.pause();
                 media_length = mp.getCurrentPosition();
                 Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
+                intent.putExtra("isMute", isMute);
                 intent.putExtra("mp_length", media_length);
                 startActivity(intent);
             }
@@ -93,6 +105,36 @@ public class MainActivity extends AppCompatActivity {
                 mp.stop();
                 Intent intent = new Intent(MainActivity.this, PuzzleIntroActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        final Button btn_mute = (Button) findViewById(R.id.btn_main_mute);
+
+        btn_mute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMute) {
+                    mp = MediaPlayer.create(MainActivity.this, R.raw.background_music);
+                    mp.start();
+                    Glide.with(MainActivity.this).asBitmap().load(R.drawable.btn_main_mute).into(new SimpleTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            Drawable drawable = new BitmapDrawable(resource);
+                            btn_mute.setBackground(drawable);
+                        }
+                    });
+                    isMute = false;
+                } else {
+                    mp.stop();
+                    Glide.with(MainActivity.this).asBitmap().load(R.drawable.btn_main_muted).into(new SimpleTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            Drawable drawable = new BitmapDrawable(resource);
+                            btn_mute.setBackground(drawable);
+                        }
+                    });
+                    isMute = true;
+                }
             }
         });
 

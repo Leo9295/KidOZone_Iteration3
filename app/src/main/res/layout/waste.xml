@@ -27,17 +27,17 @@
 
     <ImageView
         android:id="@+id/imageDes"
-        android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/waste_title_pic" />
+        android:layout_width="375dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/waste_title" />
 
     <TextView
         android:id="@+id/rubbishName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/imageDes"
+        android:layout_below="@+id/imageDes"
         android:layout_marginTop="5dp"
         android:fontFamily="sans-serif-medium"
         android:text="TextView"
@@ -55,7 +55,13 @@
         android:text="Score: "
         android:textColor="#F10412"
         android:textSize="20sp" />
-
+    <ImageView
+        android:id="@+id/iv_waste_score"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_below="@id/rubbish"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view4"

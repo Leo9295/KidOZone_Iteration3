@@ -184,29 +184,4 @@ public class LunchBoxResult extends AppCompatActivity {
         }
     }
 
-    private class getFoodPictureAsyncTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            String result = "";
-            try {
-                result = RestClient.findFoodPic("35");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if (result != null) {
-                SystemUtil su = new SystemUtil();
-                Bitmap bitmap = su.decode(result);
-                ImageView iv = (ImageView) findViewById(R.id.imageFood2);
-                iv.setImageBitmap(bitmap);
-            }
-        }
-    }
-
-
 }

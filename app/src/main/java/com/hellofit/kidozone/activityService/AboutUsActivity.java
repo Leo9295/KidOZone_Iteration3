@@ -21,17 +21,21 @@ public class AboutUsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int media_length = intent.getIntExtra("mp_length", 0);
+        final boolean isMute = intent.getBooleanExtra("isMute", false);
 
-        mp = MediaPlayer.create(AboutUsActivity.this, R.raw.background_music);
-        mp.seekTo(media_length);
-        mp.start();
+        if (!isMute) {
+            mp = MediaPlayer.create(AboutUsActivity.this, R.raw.background_music);
+            mp.seekTo(media_length);
+            mp.start();
+        }
 
         Button btn_button = (Button) findViewById(R.id.backButton);
 
         btn_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mp.stop();
+                if (!isMute)
+                    mp.stop();
                 Intent intent = new Intent(AboutUsActivity.this, MainActivity.class);
                 startActivityForResult(intent, 1);
             }
