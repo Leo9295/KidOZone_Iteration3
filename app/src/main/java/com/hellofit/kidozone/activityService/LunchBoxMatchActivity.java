@@ -192,7 +192,11 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
     }
 
     private void setQuestionImage(int foodIndex, ImageView imageView) {
-        question = getRandomNum(0, 1);
+        if (!foodInfoList.get(foodIndex).getCategoryName().equals("junks")) {
+            question = getRandomNum(0, 1);
+        } else {
+            question = 0;
+        }
         if (question == 1) {
             setFoodTypeImage(indexOfFoodCategory(foodInfoList.get(foodIndex).getCategoryName()), imageView);
         } else {
