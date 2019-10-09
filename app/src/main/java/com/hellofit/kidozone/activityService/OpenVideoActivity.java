@@ -54,7 +54,7 @@ public class OpenVideoActivity extends AppCompatActivity {
     private void init() {
         videoView = (VideoView) findViewById(R.id.videoView);
         mediaController = new MediaController(this);
-        String uri = "android.resource://" + getPackageName() + "/" + R.raw.open;
+        String uri = "android.resource://" + getPackageName() + "/" + R.raw.app_introduction_video;
         videoView.setVideoURI(Uri.parse(uri));
         videoView.setMediaController(mediaController);
         mediaController.setMediaPlayer(videoView);

@@ -16,42 +16,44 @@
         android:id="@+id/puzzleLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/description"
+        android:layout_below="@+id/tvLevel"
         android:layout_marginTop="20dp" />
 
     <ImageView
         android:id="@+id/ivSrcImg"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="120dp"
+        android:layout_height="135dp"
         android:onClick="changeImage"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/tvLevel"
-        android:layout_marginTop="10dp" />
+        android:layout_below="@+id/puzzleLayout"
+        android:layout_marginTop="3dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="75dp"
         android:layout_below="@+id/ivSrcImg"
         android:layout_centerInParent="true"
-        android:fontFamily="sans-serif-medium"
-        android:text="Click to pick image"
-        android:textSize="14sp" />
+        android:background="@drawable/icon_try_me"/>
 
     <TextView
         android:id="@+id/tvLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/puzzleLayout"
+        android:layout_below="@+id/description"
         android:layout_centerInParent="true"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="18sp" />
+        android:layout_marginTop="-20dp"
+        android:fontFamily="sans-serif-black"
+        android:textFontWeight="40"
+        android:text="placeholder"
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/btnAddLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvLevel"
+        android:layout_below="@+id/puzzleLayout"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
         android:layout_toRightOf="@+id/ivSrcImg"
         android:onClick="addLevel"
         android:textAllCaps="false"
@@ -61,9 +63,9 @@
         android:id="@+id/btnReduceLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvLevel"
+        android:layout_below="@+id/puzzleLayout"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="-2dp"
+        android:layout_marginTop="3dp"
         android:layout_marginRight="1dp"
         android:layout_toLeftOf="@+id/ivSrcImg"
         android:fontFamily="sans-serif-medium"

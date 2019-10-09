@@ -17,41 +17,42 @@
         android:id="@+id/puzzleLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/description"
+        android:layout_below="@+id/tvLevel"
         android:layout_marginTop="20dp" />
 
     <ImageView
         android:id="@+id/ivSrcImg"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="120dp"
+        android:layout_height="135dp"
         android:onClick="changeImage"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/tvLevel"
+        android:layout_below="@+id/puzzleLayout"
         android:layout_marginTop="10dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="75dp"
         android:layout_below="@+id/ivSrcImg"
         android:layout_centerInParent="true"
-        android:fontFamily="sans-serif-medium"
-        android:text="Click to pick image"
-        android:textSize="14sp" />
+        android:background="@drawable/icon_try_me" />
 
     <TextView
         android:id="@+id/tvLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/puzzleLayout"
+        android:layout_below="@+id/description"
+        android:text="placeholder"
+        android:layout_marginTop="-20dp"
         android:layout_centerInParent="true"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="18sp" />
+        android:fontFamily="sans-serif-black"
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/btnAddLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvLevel"
+        android:layout_below="@+id/puzzleLayout"
+        android:layout_marginTop="3dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/ivSrcImg"
         android:background="@drawable/puzzle_level_up_btn_pic"
@@ -61,9 +62,9 @@
         android:id="@+id/btnReduceLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvLevel"
+        android:layout_below="@+id/puzzleLayout"
         android:layout_toLeftOf="@+id/ivSrcImg"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="3dp"
         android:onClick="reduceLevel"
         android:background="@drawable/puzzle_level_down_btn_pic"
         android:textAllCaps="false" />

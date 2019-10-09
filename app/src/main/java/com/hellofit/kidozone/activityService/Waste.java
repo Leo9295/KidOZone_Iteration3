@@ -68,8 +68,8 @@ public class Waste extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder normalDialog = new AlertDialog.Builder(Waste.this);
-//              normalDialog.setIcon(R.drawable.icon_dialog);
-                normalDialog.setTitle("").setMessage("You really want to quit now?");
+                normalDialog.setIcon(R.drawable.icon_dialog);
+                normalDialog.setTitle("Oops...").setMessage("You really want to quit now?");
                 normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -156,11 +156,10 @@ public class Waste extends AppCompatActivity {
                                         listIndex++;
                                     } else {
                                         listIndex++;
-                                        Glide.with(this).load(R.drawable.wastegameend).into(iv_wasteImge);
+                                        Glide.with(this).load(R.drawable.waste_end_pic).into(iv_wasteImge);
                                         tv_wasteName.setText("");
                                         break;
                                     }
-                                    mp1.release();
                                 } else {
                                     MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.wrong);
                                     mp1.start();
@@ -175,7 +174,6 @@ public class Waste extends AppCompatActivity {
                                         tv_userScore.startAnimation(shake);
                                         setStarPic(score);
                                     }
-                                    mp1.release();
                                 }
                                 break;
                             // To Left -> Red Bin
@@ -194,11 +192,10 @@ public class Waste extends AppCompatActivity {
                                         listIndex++;
                                     } else {
                                         listIndex++;
-                                        Glide.with(this).load(R.drawable.wastegameend).into(iv_wasteImge);
+                                        Glide.with(this).load(R.drawable.waste_end_pic).into(iv_wasteImge);
                                         tv_wasteName.setText("");
                                         break;
                                     }
-                                    mp1.release();
                                 } else {
                                     MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.wrong);
                                     mp1.start();
@@ -212,7 +209,6 @@ public class Waste extends AppCompatActivity {
                                         Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake_text);
                                         tv_userScore.startAnimation(shake);
                                         setStarPic(score);
-                                        mp1.release();
                                     }
                                 }
                                 break;
@@ -232,11 +228,10 @@ public class Waste extends AppCompatActivity {
                                         listIndex++;
                                     } else {
                                         listIndex++;
-                                        Glide.with(this).load(R.drawable.wastegameend).into(iv_wasteImge);
+                                        Glide.with(this).load(R.drawable.waste_end_pic).into(iv_wasteImge);
                                         tv_wasteName.setText("");
                                         break;
                                     }
-                                    mp1.release();
                                 } else {
                                     MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.wrong);
                                     mp1.start();
@@ -251,19 +246,13 @@ public class Waste extends AppCompatActivity {
                                         tv_userScore.startAnimation(shake);
                                         setStarPic(score);
                                     }
-                                    mp1.release();
                                 }
                                 break;
                         }
                     } else {
-                        Glide.with(this).load(R.drawable.wastegameend).into(iv_wasteImge);
+                        Glide.with(this).load(R.drawable.waste_end_pic).into(iv_wasteImge);
                         tv_wasteName.setText("");
                     }
-                    // Display display = getWindowManager().getDefaultDisplay();
-                    //   int height = display.getHeight();
-                    // Toast toast = Toast.makeText(Waste.this, "", Toast.LENGTH_SHORT);
-                    // toast.setGravity(Gravity.TOP, 0, 5 * (height / 8));
-                    //  toast.show();
                 }
                 break;
         }

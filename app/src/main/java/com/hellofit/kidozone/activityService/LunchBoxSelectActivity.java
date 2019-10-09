@@ -59,8 +59,8 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder normalDialog = new AlertDialog.Builder(LunchBoxSelectActivity.this);
-//              normalDialog.setIcon(R.drawable.icon_dialog);
-                normalDialog.setTitle("").setMessage("You really want to quit now?");
+                normalDialog.setIcon(R.drawable.icon_dialog);
+                normalDialog.setTitle("Oops...").setMessage("You really want to quit now?");
                 normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -112,7 +112,7 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
                     madeChoice(iv_selectType, btn_food1, btn_food2, btn_food3);
                 }
                 else {
-                    pickedList.add(foodInfoList.get((loopIndex - 1) * 5));
+                    pickedList.add(foodInfoList.get((loopIndex - 1) * 5 + 1));
                     AlertDialog.Builder normalDialog = new AlertDialog.Builder(LunchBoxSelectActivity.this);
 //                  normalDialog.setIcon(R.drawable.icon_dialog);
                     normalDialog.setTitle("").setMessage("You've finish all pick! Check the result!");
@@ -137,7 +137,7 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
                     madeChoice(iv_selectType, btn_food1, btn_food2, btn_food3);
                 }
                 else {
-                    pickedList.add(foodInfoList.get((loopIndex - 1) * 5));
+                    pickedList.add(foodInfoList.get((loopIndex - 1) * 5 + 2));
                     AlertDialog.Builder normalDialog = new AlertDialog.Builder(LunchBoxSelectActivity.this);
 //                  normalDialog.setIcon(R.drawable.icon_dialog);
                     normalDialog.setTitle("").setMessage("You've finish all pick! Check the result!");

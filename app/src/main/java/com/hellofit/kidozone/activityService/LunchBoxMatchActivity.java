@@ -82,9 +82,24 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
         btn_backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mp.stop();
-                Intent intent = new Intent(LunchBoxMatchActivity.this, MainActivity.class);
-                startActivityForResult(intent, 1);
+                AlertDialog.Builder normalDialog = new AlertDialog.Builder(LunchBoxMatchActivity.this);
+                normalDialog.setIcon(R.drawable.icon_dialog);
+                normalDialog.setTitle("Oops...").setMessage("You really want to quit now?");
+                normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mp.stop();
+                        Intent intent = new Intent(LunchBoxMatchActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                normalDialog.setNegativeButton("I click wrong button", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                normalDialog.show();
             }
         });
 
@@ -232,22 +247,22 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
     private void setFoodTypeImage(int typeNum, ImageView imageView) {
         switch (typeNum) {
             case 0:
-                Glide.with(this).load(R.drawable.lunchbox_title_fruit).into(imageView);
+                Glide.with(this).load(R.drawable.lunchbox_question_fruit).into(imageView);
                 break;
             case 1:
-                Glide.with(this).load(R.drawable.lunchbox_title_vegetable).into(imageView);
+                Glide.with(this).load(R.drawable.lunchbox_question_vegetable).into(imageView);
                 break;
             case 2:
-                Glide.with(this).load(R.drawable.lunchbox_title_diary_product).into(imageView);
+                Glide.with(this).load(R.drawable.lunchbox_question_diary_product).into(imageView);
                 break;
             case 3:
-                Glide.with(this).load(R.drawable.lunchbox_title_meat).into(imageView);
+                Glide.with(this).load(R.drawable.lunchbox_question_meat).into(imageView);
                 break;
             case 4:
-                Glide.with(this).load(R.drawable.lunchbox_title_grain).into(imageView);
+                Glide.with(this).load(R.drawable.lunchbox_question_grain).into(imageView);
                 break;
             case 5:
-                Glide.with(this).load(R.drawable.lunchbox_title_drink).into(imageView);
+                Glide.with(this).load(R.drawable.lunchbox_question_drink).into(imageView);
                 break;
         }
     }

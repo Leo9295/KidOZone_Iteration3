@@ -1,7 +1,11 @@
 package com.hellofit.kidozone.activityService;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.ComponentCallbacks;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -22,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
@@ -38,10 +43,15 @@ public class MainActivity extends AppCompatActivity {
     int media_length;
     boolean isMute;
 
+    private static float sNoncompatDensity;
+    private static float sNoncompatScaledDensity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setCustonDensity(MainActivity.this,this.getApplication());
 
         Button imagePuzzle = (Button) findViewById(R.id.imagePuzzleGame);
         Button imageWaste = (Button) findViewById(R.id.imageWasteGame);
@@ -200,6 +210,40 @@ public class MainActivity extends AppCompatActivity {
             mp.seekTo(media_length);
             mp.start();
         }
+    }
+
+
+    private static void setCustonDensity(@NonNull Activity activity, @NonNull final Application application){
+        final DisplayMetrics appDisplayMetrics = application.getResources().getDisplayMetrics();
+
+        if(sNoncompatDensity == 0){
+            sNoncompatDensity = appDisplayMetrics.density;
+            sNoncompatScaledDensity = appDisplayMetrics.scaledDensity;
+            application.registerComponentCallbacks(new ComponentCallbacks(){
+                @Override
+                public void onConfigurationChanged(Configuration newConfig){
+                    if(newConfig != null && newConfig.fontScale >0){
+                        sNoncompatScaledDensity = application.getResources().getDisplayMetrics().scaledDensity;
+                    }
+                }
+                @Override
+                public void onLowMemory(){
+                }
+            });
+        }
+
+        final float targetDensity = appDisplayMetrics.widthPixels / 412;
+        final float targetScaledDensity = targetDensity*(sNoncompatScaledDensity/sNoncompatDensity);
+        final int targetDensityDpi = (int)(160*targetDensity);
+
+        appDisplayMetrics.density = targetDensity;
+        appDisplayMetrics.scaledDensity = targetScaledDensity;
+        appDisplayMetrics.densityDpi = targetDensityDpi;
+
+        final DisplayMetrics activityDisplayMetrics = activity.getResources().getDisplayMetrics();
+        activityDisplayMetrics.density = targetDensity;
+        activityDisplayMetrics.scaledDensity = targetScaledDensity;
+        activityDisplayMetrics.densityDpi = targetDensityDpi;
     }
 
 }

@@ -44,8 +44,8 @@ public class PuzzleView extends AppCompatActivity implements PuzzleGame.GameStat
             @Override
             public void onClick(View v){
                 AlertDialog.Builder normalDialog = new AlertDialog.Builder(PuzzleView.this);
-//              normalDialog.setIcon(R.drawable.icon_dialog);
-                normalDialog.setTitle("").setMessage("You really want to quit now?");
+                normalDialog.setIcon(R.drawable.icon_dialog);
+                normalDialog.setTitle("Oops...").setMessage("You really want to quit now?");
                 normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -71,7 +71,7 @@ public class PuzzleView extends AppCompatActivity implements PuzzleGame.GameStat
         puzzleGame = new PuzzleGame(this, puzzleLayout);
         srcImg = (ImageView) findViewById(R.id.ivSrcImg);
         tvLevel = (TextView) findViewById(R.id.tvLevel);
-        tvLevel.setText("Level：" + puzzleGame.getLevel());
+        tvLevel.setText("Level：" + (puzzleGame.getLevel() + 1));
         srcImg.setImageBitmap(Utils.readBitmap(getApplicationContext(), puzzleLayout.getRes(), 4));
     }
 
@@ -112,7 +112,7 @@ public class PuzzleView extends AppCompatActivity implements PuzzleGame.GameStat
 
     @Override
     public void setLevel(int level) {
-        tvLevel.setText("Level：" + level);
+        tvLevel.setText("Level：" + (level + 1));
     }
 
     @Override

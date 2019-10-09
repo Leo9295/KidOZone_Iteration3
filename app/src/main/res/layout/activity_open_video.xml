@@ -11,11 +11,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/button_style4"
-        android:text="Skip"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="16sp" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/btn_skip" />
 
     <VideoView
         android:id="@+id/videoView"
