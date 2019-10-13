@@ -11,6 +11,16 @@ import java.util.List;
 import java.util.Scanner;
 import com.hellofit.kidozone.entity.*;
 
+/***
+ *  This class is create connection and get data from the server
+ *
+ *  Created by Mingzhe Liu on 08/30/19.
+ *  Copyright @ 2019 Mingzhe Liu. All right reserved
+ *
+ *  @author Mingzhe Liu
+ *  @version 3.0
+ */
+
 public class RestClient {
 
     private final static String BASE_URL = "http://3.105.242.54:8080/HellofitWebServer/webresources/";
@@ -191,67 +201,6 @@ public class RestClient {
             e.printStackTrace();
         }
         return wasteInfos;
-    }
-
-    /**
-     * Using the suburb name to retrieve the school which locate in that suburb
-     * @param suburbName
-     * @return json string
-     */
-    public static String getSchoolInfo(String suburbName) {
-        URL url = null;
-        HttpURLConnection connection = null;
-        String jsonString = "";
-        suburbName = suburbName.toUpperCase();
-        try{
-            url = new URL(BASE_URL + "com.kidozone.entity.schoolinfo/findSchoolBySuburb/" + suburbName);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setReadTimeout(10000);
-            connection.setConnectTimeout(15000);
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Accept", "application/json");
-            Scanner scanner = new Scanner(connection.getInputStream());
-            while (scanner.hasNextLine()) {
-                jsonString += scanner.nextLine();
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-        } finally {
-            connection.disconnect();
-        }
-
-        return jsonString;
-    }
-
-    /**
-     * Using the json String to parse to the SchoolInfo class
-     * @param schoolJson
-     * @return The array list containing all school entities
-     */
-    public static List<SchoolInfo> parseSchoolJson(String schoolJson){
-        List<SchoolInfo> schoolInfos = new ArrayList<SchoolInfo>();
-        try{
-            JSONArray jsonArray = new JSONArray(schoolJson);
-            for (int i = 0; i < jsonArray.length(); i++){
-                JSONObject obj = jsonArray.getJSONObject(i);
-                SchoolInfo info = new SchoolInfo();
-                info.setSchoolName(obj.getString("school_name"));
-                info.setSchoolAddress(obj.getString("address_line"));
-                info.setSchoolPhone(obj.getString("full_phone_no"));
-                info.setSchoolSuburb(obj.getString("suburb"));
-                info.setSchoolPostcode(obj.getString("postal_postcode"));
-                double lat = Double.parseDouble(obj.getString("latitude"));
-                double lon = Double.parseDouble(obj.getString("longitude"));
-                Coordinate coo = new Coordinate(lon, lat);
-                info.setSchoolCoordinate(coo);
-                schoolInfos.add(info);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return schoolInfos;
     }
 
     /**

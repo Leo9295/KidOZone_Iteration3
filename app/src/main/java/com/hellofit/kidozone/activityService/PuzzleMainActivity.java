@@ -9,7 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.hellofit.kidozone.R;
 
-public class Puzzle extends AppCompatActivity {
+/***
+ *  This class is the main page for puzzle game
+ *
+ *  Created by Mingzhe Liu on 08/30/19.
+ *  Copyright @ 2019 Mingzhe Liu. All right reserved
+ *
+ *  @author Mingzhe Liu
+ *  @version 3.2
+ */
+
+public class PuzzleMainActivity extends AppCompatActivity {
 
 
     @Override
@@ -22,7 +32,7 @@ public class Puzzle extends AppCompatActivity {
         imageAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Puzzle.this, PuzzleAnimal.class);
+                Intent intent = new Intent(PuzzleMainActivity.this, PuzzleAnimalActivity.class);
                 startActivity(intent);
             }
         });
@@ -32,7 +42,7 @@ public class Puzzle extends AppCompatActivity {
         imageSport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Puzzle.this, PuzzleSport.class);
+                Intent intent = new Intent(PuzzleMainActivity.this, PuzzleSportActivity.class);
                 startActivity(intent);
             }
         });
@@ -42,7 +52,7 @@ public class Puzzle extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Puzzle.this, PuzzleView.class);
+                Intent intent = new Intent(PuzzleMainActivity.this, PuzzleViewActivity.class);
                 startActivity(intent);
             }
         });
@@ -52,7 +62,7 @@ public class Puzzle extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(Puzzle.this, MainActivity.class);
+                Intent intent = new Intent(PuzzleMainActivity.this, MainActivity.class);
                 startActivityForResult(intent, 1);
             }
         });

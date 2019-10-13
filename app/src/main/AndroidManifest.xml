@@ -34,22 +34,22 @@
         <activity android:name=".activityService.LunchBoxMatchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activityService.LunchBoxResult"
+            android:name=".activityService.LunchBoxResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activityService.Waste"
+            android:name=".activityService.WasteMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activityService.Puzzle"
+            android:name=".activityService.PuzzleMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activityService.PuzzleAnimal"
+            android:name=".activityService.PuzzleAnimalActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activityService.PuzzleSport"
+            android:name=".activityService.PuzzleSportActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activityService.PuzzleView"
+            android:name=".activityService.PuzzleViewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activityService.WelcomeActivity"

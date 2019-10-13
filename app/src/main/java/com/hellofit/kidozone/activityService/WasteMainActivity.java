@@ -29,7 +29,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class Waste extends AppCompatActivity {
+/***
+ *  This class is the waste game function class
+ *
+ *  Created by Mingzhe Liu on 08/30/19.
+ *  Copyright @ 2019 Mingzhe Liu. All right reserved
+ *
+ *  @author Mingzhe Liu
+ *  @version 3.2
+ */
+
+public class WasteMainActivity extends AppCompatActivity {
 
     private float downX;
     private float downY;
@@ -55,7 +65,7 @@ public class Waste extends AppCompatActivity {
         TextView tv_userScore = (TextView) findViewById(R.id.wasteScore);
         iv_wasteScore = (ImageView) findViewById(R.id.iv_waste_score);
 
-        // Load Waste data from SharedPreferences
+        // Load WasteMainActivity data from SharedPreferences
         SharedPreferences sp = getSharedPreferences("SystemSP", MODE_PRIVATE);
         String json = sp.getString("wasteList", null);
         if (json != null) {
@@ -67,13 +77,13 @@ public class Waste extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder normalDialog = new AlertDialog.Builder(Waste.this);
+                AlertDialog.Builder normalDialog = new AlertDialog.Builder(WasteMainActivity.this);
                 normalDialog.setIcon(R.drawable.icon_dialog);
                 normalDialog.setTitle("Oops...").setMessage("You really want to quit now?");
                 normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Waste.this, MainActivity.class);
+                        Intent intent = new Intent(WasteMainActivity.this, MainActivity.class);
                         startActivityForResult(intent, 1);
                     }
                 });
@@ -133,7 +143,7 @@ public class Waste extends AppCompatActivity {
                 Log.e("Tag", "========Y axis Distance：" + dy);
                 if (Math.abs(dx) > 300 || Math.abs(dy) > 300) {
 
-                    MediaPlayer mp = MediaPlayer.create(Waste.this, R.raw.shoop);
+                    MediaPlayer mp = MediaPlayer.create(WasteMainActivity.this, R.raw.shoop);
                     mp.start();
 
                     int orientation = getOrientation(dx, dy);
@@ -143,9 +153,9 @@ public class Waste extends AppCompatActivity {
                             // To right -> Yellow Bin
                             case 'r':
                                 if (wasteInfos.get(listIndex).getCategoryName().equals("yellow")) {
-                                    MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.great);
+                                    MediaPlayer mp1 = MediaPlayer.create(WasteMainActivity.this, R.raw.great);
                                     mp1.start();
-                                    Toast toast = Toast.makeText(Waste.this, "Added to the YellowBin!", Toast.LENGTH_SHORT);
+                                    Toast toast = Toast.makeText(WasteMainActivity.this, "Added to the YellowBin!", Toast.LENGTH_SHORT);
                                     toast.setGravity(Gravity.BOTTOM, 0, 200);
                                     toast.show();
                                     if (listIndex < wasteInfos.size() - 1) {
@@ -161,9 +171,9 @@ public class Waste extends AppCompatActivity {
                                         break;
                                     }
                                 } else {
-                                    MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.wrong);
+                                    MediaPlayer mp1 = MediaPlayer.create(WasteMainActivity.this, R.raw.wrong);
                                     mp1.start();
-                                    Toast toast = Toast.makeText(Waste.this, "Not that bin, try again.", Toast.LENGTH_SHORT);
+                                    Toast toast = Toast.makeText(WasteMainActivity.this, "Not that bin, try again.", Toast.LENGTH_SHORT);
                                     toast.setGravity(Gravity.BOTTOM, 0, 200);
                                     toast.show();
                                     if (score > 0) {
@@ -179,9 +189,9 @@ public class Waste extends AppCompatActivity {
                             // To Left -> Red Bin
                             case 'l':
                                 if (wasteInfos.get(listIndex).getCategoryName().equals("red")) {
-                                    MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.great);
+                                    MediaPlayer mp1 = MediaPlayer.create(WasteMainActivity.this, R.raw.great);
                                     mp1.start();
-                                    Toast toast = Toast.makeText(Waste.this, "Added to the RedBin!", Toast.LENGTH_SHORT);
+                                    Toast toast = Toast.makeText(WasteMainActivity.this, "Added to the RedBin!", Toast.LENGTH_SHORT);
                                     toast.setGravity(Gravity.BOTTOM, 0, 200);
                                     toast.show();
                                     if (listIndex < wasteInfos.size() - 1) {
@@ -197,9 +207,9 @@ public class Waste extends AppCompatActivity {
                                         break;
                                     }
                                 } else {
-                                    MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.wrong);
+                                    MediaPlayer mp1 = MediaPlayer.create(WasteMainActivity.this, R.raw.wrong);
                                     mp1.start();
-                                    Toast toast = Toast.makeText(Waste.this, "Not that bin, try again.", Toast.LENGTH_SHORT);
+                                    Toast toast = Toast.makeText(WasteMainActivity.this, "Not that bin, try again.", Toast.LENGTH_SHORT);
                                     toast.setGravity(Gravity.BOTTOM, 0, 200);
                                     toast.show();
                                     if (score > 0) {
@@ -215,9 +225,9 @@ public class Waste extends AppCompatActivity {
                             // To Top -> Green Bin
                             case 't':
                                 if (wasteInfos.get(listIndex).getCategoryName().equals("green")) {
-                                    MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.great);
+                                    MediaPlayer mp1 = MediaPlayer.create(WasteMainActivity.this, R.raw.great);
                                     mp1.start();
-                                    Toast toast = Toast.makeText(Waste.this, "Added to the GreenBin!", Toast.LENGTH_SHORT);
+                                    Toast toast = Toast.makeText(WasteMainActivity.this, "Added to the GreenBin!", Toast.LENGTH_SHORT);
                                     toast.setGravity(Gravity.BOTTOM, 0, 200);
                                     toast.show();
                                     if (listIndex < wasteInfos.size() - 1) {
@@ -233,9 +243,9 @@ public class Waste extends AppCompatActivity {
                                         break;
                                     }
                                 } else {
-                                    MediaPlayer mp1 = MediaPlayer.create(Waste.this, R.raw.wrong);
+                                    MediaPlayer mp1 = MediaPlayer.create(WasteMainActivity.this, R.raw.wrong);
                                     mp1.start();
-                                    Toast toast = Toast.makeText(Waste.this, "Not that bin, try again.", Toast.LENGTH_SHORT);
+                                    Toast toast = Toast.makeText(WasteMainActivity.this, "Not that bin, try again.", Toast.LENGTH_SHORT);
                                     toast.setGravity(Gravity.BOTTOM, 0, 200);
                                     toast.show();
                                     if (score > 0) {
@@ -290,7 +300,7 @@ public class Waste extends AppCompatActivity {
     }
 
     /**
-     * Clear the Waste List
+     * Clear the WasteMainActivity List
      */
     @Override
     protected void onDestroy() {

@@ -13,6 +13,16 @@ import android.widget.VideoView;
 
 import com.hellofit.kidozone.R;
 
+/***
+ *  This class show the introduction video for lunchbox game
+ *
+ *  Created by Weiqiang Li on 10/05/19.
+ *  Copyright @ 2019 Weiqiang Li. All right reserved
+ *
+ *  @author Weiqiang Li
+ *  @version 3.2
+ */
+
 public class LunchBoxIntroActivity extends AppCompatActivity {
 
     private VideoView videoView;

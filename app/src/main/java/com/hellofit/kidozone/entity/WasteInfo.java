@@ -4,6 +4,17 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/***
+ *  The entity of waste in the project
+ *  To store the waste data of user or school
+ *
+ *  Created by Mingzhe Liu on 08/30/19.
+ *  Copyright @ 2019 Mingzhe Liu. All right reserved
+ *
+ *  @author Mingzhe Liu
+ *  @version 2.4
+ */
+
 public class WasteInfo implements Parcelable, java.io.Serializable {
 
     private String id;

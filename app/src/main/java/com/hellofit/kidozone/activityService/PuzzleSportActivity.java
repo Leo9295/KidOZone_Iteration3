@@ -19,7 +19,17 @@ import com.hellofit.kidozone.puzzleGame.ui.PuzzleLayout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PuzzleSport extends AppCompatActivity implements PuzzleGame.GameStateListener {
+/***
+ *  This class is the puzzle game function with Australia famous sports
+ *
+ *  Created by Weiqiang Li on 08/30/19.
+ *  Copyright @ 2019 Weiqiang Li. All right reserved
+ *
+ *  @author Weiqiang Li
+ *  @version 3.2
+ */
+
+public class PuzzleSportActivity extends AppCompatActivity implements PuzzleGame.GameStateListener {
 
     private PuzzleLayout puzzleLayout;
     private PuzzleGame puzzleGame;
@@ -35,7 +45,7 @@ public class PuzzleSport extends AppCompatActivity implements PuzzleGame.GameSta
         initView();
         initListener();
 
-        mp = MediaPlayer.create(PuzzleSport.this, R.raw.puzzle_sport);
+        mp = MediaPlayer.create(PuzzleSportActivity.this, R.raw.puzzle_sport);
         mp.start();
 
         Button backButton = (Button) findViewById(R.id.backButton);
@@ -43,14 +53,14 @@ public class PuzzleSport extends AppCompatActivity implements PuzzleGame.GameSta
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                AlertDialog.Builder normalDialog = new AlertDialog.Builder(PuzzleSport.this);
+                AlertDialog.Builder normalDialog = new AlertDialog.Builder(PuzzleSportActivity.this);
                 normalDialog.setIcon(R.drawable.icon_dialog);
                 normalDialog.setTitle("Oops...").setMessage("You really want to quit now?");
                 normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mp.stop();
-                        Intent intent = new Intent(PuzzleSport.this, Puzzle.class);
+                        Intent intent = new Intent(PuzzleSportActivity.this, PuzzleMainActivity.class);
                         startActivityForResult(intent, 1);
                     }
                 });
@@ -118,7 +128,7 @@ public class PuzzleSport extends AppCompatActivity implements PuzzleGame.GameSta
     public void gameSuccess(int level) {
         final SuccessDialog successDialog = new SuccessDialog();
         successDialog.show(getFragmentManager(), "successDialog");
-        MediaPlayer mp = MediaPlayer.create(PuzzleSport.this, R.raw.yeah);
+        MediaPlayer mp = MediaPlayer.create(PuzzleSportActivity.this, R.raw.yeah);
         mp.start();
         successDialog.addButtonClickListener(new SuccessDialog.OnButtonClickListener() {
             @Override

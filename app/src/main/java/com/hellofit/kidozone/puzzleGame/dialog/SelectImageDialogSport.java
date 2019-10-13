@@ -19,6 +19,16 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+/***
+ *  This class is the dialog to select sport image
+ *
+ *  Created by Weiqiang Li on 09/13/19.
+ *  Copyright @ 2019 Weiqiang Li. All right reserved
+ *
+ *  @author Weiqiang Li
+ *  @version 3.1
+ */
+
 public class SelectImageDialogSport extends DialogFragment {
 
     private View view;

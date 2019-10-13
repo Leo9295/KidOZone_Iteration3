@@ -26,6 +26,15 @@ import java.util.Random;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+/***
+ *  This class include the function of match food and category correctly
+ *
+ *  Created by Mingzhe Liu on 10/02/19.
+ *  Copyright @ 2019 Mingzhe Liu. All right reserved
+ *
+ *  @author Mingzhe Liu
+ *  @version 3.2
+ */
 public class LunchBoxMatchActivity extends AppCompatActivity {
 
     private ArrayList<FoodInfo> foodInfoList;

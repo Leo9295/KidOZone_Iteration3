@@ -13,6 +13,16 @@ import android.widget.VideoView;
 
 import com.hellofit.kidozone.R;
 
+/***
+ *  This class is the introduction video for puzzle game
+ *
+ *  Created by Weiqiang Li on 10/05/19.
+ *  Copyright @ 2019 Weiqiang Li. All right reserved
+ *
+ *  @author Weiqiang Li
+ *  @version 3.2
+ */
+
 public class PuzzleIntroActivity extends AppCompatActivity {
 
     private VideoView videoView;
@@ -30,7 +40,7 @@ public class PuzzleIntroActivity extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PuzzleIntroActivity.this, Puzzle.class);
+                Intent intent = new Intent(PuzzleIntroActivity.this, PuzzleMainActivity.class);
                 startActivity(intent);
             }
         });
@@ -45,7 +55,7 @@ public class PuzzleIntroActivity extends AppCompatActivity {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                Intent intent = new Intent(PuzzleIntroActivity.this, Puzzle.class);
+                Intent intent = new Intent(PuzzleIntroActivity.this, PuzzleMainActivity.class);
                 startActivity(intent);
             }
         });

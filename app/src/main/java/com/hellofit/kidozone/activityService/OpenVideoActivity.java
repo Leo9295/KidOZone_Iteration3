@@ -13,6 +13,16 @@ import android.widget.VideoView;
 
 import com.hellofit.kidozone.R;
 
+/***
+ *  This class is the open video for app
+ *
+ *  Created by Weiqiang Li on 10/05/19.
+ *  Copyright @ 2019 Weiqiang Li. All right reserved
+ *
+ *  @author Weiqiang Li
+ *  @version 3.1
+ */
+
 public class OpenVideoActivity extends AppCompatActivity {
 
     private VideoView videoView;

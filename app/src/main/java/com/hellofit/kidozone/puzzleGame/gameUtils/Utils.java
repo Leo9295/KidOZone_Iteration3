@@ -12,7 +12,15 @@ import com.hellofit.kidozone.puzzleGame.module.ImagePiece;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/***
+ *  This class include some function method like get the screen width and split the image
+ *
+ *  Created by Weiqiang Li on 09/13/19.
+ *  Copyright @ 2019 Weiqiang Li. All right reserved
+ *
+ *  @author Weiqiang Li
+ *  @version 3.1
+ */
 
 public class Utils {
 

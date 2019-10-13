@@ -3,6 +3,15 @@ package com.hellofit.kidozone.puzzleGame.module;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
+/***
+ *  This class include some methods to deal the image piece
+ *
+ *  Created by Weiqiang Li on 09/13/19.
+ *  Copyright @ 2019 Weiqiang Li. All right reserved
+ *
+ *  @author Weiqiang Li
+ *  @version 3.1
+ */
 
 public class ImagePiece {
 

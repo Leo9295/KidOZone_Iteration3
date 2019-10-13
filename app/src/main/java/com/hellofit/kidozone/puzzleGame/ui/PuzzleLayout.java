@@ -23,12 +23,19 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/***
+ *  This class set the layout for the puzzle game view
+ *
+ *  Created by Weiqiang Li on 09/13/19.
+ *  Copyright @ 2019 Weiqiang Li. All right reserved
+ *
+ *  @author Weiqiang Li
+ *  @version 3.1
+ */
 
 public class PuzzleLayout extends FrameLayout implements View.OnClickListener {
 
-
     private static final int DEFAULT_MARGIN = 3;
-
 
     private int mViewWidth = 0;
 
@@ -46,6 +53,7 @@ public class PuzzleLayout extends FrameLayout implements View.OnClickListener {
     private RelativeLayout mAnimLayout;
 
     private int mMargin;
+    
     private int mPadding;
 
     private ImageView mFirst;

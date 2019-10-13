@@ -16,6 +16,16 @@ import com.hellofit.kidozone.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/***
+ *  This class is the first page of app which is the welcome page
+ *
+ *  Created by Mingzhe Liu on 08/30/19.
+ *  Copyright @ 2019 Mingzhe Liu. All right reserved
+ *
+ *  @author Mingzhe Liu
+ *  @version 3.2
+ */
+
 public class WelcomeActivity extends AppCompatActivity {
 
     private static float sNoncompatDensity;

@@ -7,6 +7,15 @@ import com.hellofit.kidozone.puzzleGame.ui.PuzzleLayout;
 
 import androidx.annotation.NonNull;
 
+/***
+ *  This class is the puzzle game function class
+ *
+ *  Created by Weiqiang Li on 09/13/19.
+ *  Copyright @ 2019 Weiqiang Li. All right reserved
+ *
+ *  @author Weiqiang Li
+ *  @version 3.1
+ */
 
 public class PuzzleGame implements Game, PuzzleLayout.SuccessListener {
 

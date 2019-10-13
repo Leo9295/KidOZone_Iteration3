@@ -32,6 +32,16 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+/***
+ *  This class is the main page of the app
+ *
+ *  Created by Mingzhe Liu on 08/30/19.
+ *  Copyright @ 2019 Mingzhe Liu. All right reserved
+ *
+ *  @author Mingzhe Liu
+ *  @version 3.2
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     // The list to contain the food entity which using in the game

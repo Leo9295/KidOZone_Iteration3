@@ -11,6 +11,16 @@ import android.widget.Button;
 
 import com.hellofit.kidozone.R;
 
+/***
+ *  This class is the introduction of the applications
+ *
+ *  Created by Mingzhe Liu on 09/17/19.
+ *  Copyright @ 2019 Mingzhe Liu. All right reserved
+ *
+ *  @author Mingzhe Liu
+ *  @version 3.2
+ */
+
 public class AboutUsActivity extends AppCompatActivity {
 
     private MediaPlayer mp;

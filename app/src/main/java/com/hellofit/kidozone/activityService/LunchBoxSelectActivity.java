@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -27,6 +26,16 @@ import com.hellofit.kidozone.entity.FoodInfo;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+
+/***
+ *  This class is the function of select food to lunchbox
+ *
+ *  Created by Mingzhe Liu on 10/02/19.
+ *  Copyright @ 2019 Mingzhe Liu. All right reserved
+ *
+ *  @author Mingzhe Liu
+ *  @version 3.2
+ */
 
 public class LunchBoxSelectActivity extends AppCompatActivity {
 
@@ -93,7 +102,7 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
                     normalDialog.setPositiveButton("Go", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResult.class);
+                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResultActivity.class);
                             saveListInSP();
                             startActivity(intent);
                         }
@@ -119,7 +128,7 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
                     normalDialog.setPositiveButton("Go", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResult.class);
+                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResultActivity.class);
                             saveListInSP();
                             startActivity(intent);
                         }
@@ -144,7 +153,7 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
                     normalDialog.setPositiveButton("Go", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResult.class);
+                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResultActivity.class);
                             saveListInSP();
                             startActivity(intent);
                         }
@@ -168,7 +177,7 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
                     normalDialog.setPositiveButton("Go", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResult.class);
+                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResultActivity.class);
                             saveListInSP();
                             startActivity(intent);
                         }

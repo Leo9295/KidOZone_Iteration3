@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.hellofit.kidozone.R;
 import com.hellofit.kidozone.puzzleGame.gameUtils.Utils;
-import com.hellofit.kidozone.puzzleGame.dialog.SelectImageDialogView;
+import com.hellofit.kidozone.puzzleGame.dialog.SelectImageDialog;
 import com.hellofit.kidozone.puzzleGame.dialog.SuccessDialog;
 import com.hellofit.kidozone.puzzleGame.game.PuzzleGame;
 import com.hellofit.kidozone.puzzleGame.ui.PuzzleLayout;
@@ -19,38 +19,48 @@ import com.hellofit.kidozone.puzzleGame.ui.PuzzleLayout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PuzzleView extends AppCompatActivity implements PuzzleGame.GameStateListener {
+/***
+ *  This class is the puzzle game function with Australia animals
+ *
+ *  Created by Mingzhe Liu on 08/30/19.
+ *  Copyright @ 2019 Mingzhe Liu. All right reserved
+ *
+ *  @author Weiqiang Li
+ *  @version 3.2
+ */
+
+public class PuzzleAnimalActivity extends AppCompatActivity implements PuzzleGame.GameStateListener {
 
     private PuzzleLayout puzzleLayout;
     private PuzzleGame puzzleGame;
     private ImageView srcImg;
     private TextView tvLevel;
-    private SelectImageDialogView selectImageDialog;
+    private SelectImageDialog selectImageDialog;
     private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.puzzle_view);
+        setContentView(R.layout.puzzle_animal);
         initView();
         initListener();
 
-        mp = MediaPlayer.create(PuzzleView.this, R.raw.puzzle_sights);
+        mp = MediaPlayer.create(PuzzleAnimalActivity.this, R.raw.puzzle_animals);
         mp.start();
 
         Button backButton = (Button) findViewById(R.id.backButton);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                AlertDialog.Builder normalDialog = new AlertDialog.Builder(PuzzleView.this);
+            public void onClick(View v) {
+                AlertDialog.Builder normalDialog = new AlertDialog.Builder(PuzzleAnimalActivity.this);
                 normalDialog.setIcon(R.drawable.icon_dialog);
                 normalDialog.setTitle("Oops...").setMessage("You really want to quit now?");
                 normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mp.stop();
-                        Intent intent = new Intent(PuzzleView.this, Puzzle.class);
+                        Intent intent = new Intent(PuzzleAnimalActivity.this, PuzzleMainActivity.class);
                         startActivityForResult(intent, 1);
                     }
                 });
@@ -80,8 +90,8 @@ public class PuzzleView extends AppCompatActivity implements PuzzleGame.GameStat
 
 
         if (selectImageDialog == null) {
-            selectImageDialog = new SelectImageDialogView();
-            selectImageDialog.addItemClickListener(new SelectImageDialogView.OnItemClickListener() {
+            selectImageDialog = new SelectImageDialog();
+            selectImageDialog.addItemClickListener(new SelectImageDialog.OnItemClickListener() {
                 @Override
                 public void itemClick(int postion, int res) {
                     puzzleGame.changeImage(res);
@@ -119,7 +129,7 @@ public class PuzzleView extends AppCompatActivity implements PuzzleGame.GameStat
     public void gameSuccess(int level) {
         final SuccessDialog successDialog = new SuccessDialog();
         successDialog.show(getFragmentManager(), "successDialog");
-        MediaPlayer mp = MediaPlayer.create(PuzzleView.this, R.raw.yeah);
+        MediaPlayer mp = MediaPlayer.create(PuzzleAnimalActivity.this, R.raw.yeah);
         mp.start();
         successDialog.addButtonClickListener(new SuccessDialog.OnButtonClickListener() {
             @Override

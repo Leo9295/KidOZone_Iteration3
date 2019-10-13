@@ -20,7 +20,17 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class LunchBoxResult extends AppCompatActivity {
+/***
+ *  This class is show the lunchbox result
+ *
+ *  Created by Mingzhe Liu on 10/02/19.
+ *  Copyright @ 2019 Mingzhe Liu. All right reserved
+ *
+ *  @author Mingzhe Liu
+ *  @version 3.2
+ */
+
+public class LunchBoxResultActivity extends AppCompatActivity {
 
     private int score;
 
@@ -38,7 +48,7 @@ public class LunchBoxResult extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent intent = new Intent(LunchBoxResult.this, LunchBoxMatchActivity.class);
+            Intent intent = new Intent(LunchBoxResultActivity.this, LunchBoxMatchActivity.class);
             startActivityForResult(intent, 1);
             }
         });
