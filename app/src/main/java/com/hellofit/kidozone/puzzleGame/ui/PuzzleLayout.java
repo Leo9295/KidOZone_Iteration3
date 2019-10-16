@@ -31,6 +31,8 @@ import java.util.List;
  *
  *  @author Weiqiang Li
  *  @version 3.1
+ *
+ *  Final modified date: 10/13/2019 by Weiqiang Li
  */
 
 public class PuzzleLayout extends FrameLayout implements View.OnClickListener {
@@ -53,7 +55,7 @@ public class PuzzleLayout extends FrameLayout implements View.OnClickListener {
     private RelativeLayout mAnimLayout;
 
     private int mMargin;
-    
+
     private int mPadding;
 
     private ImageView mFirst;

@@ -3,8 +3,11 @@ package com.hellofit.kidozone.activityService;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,6 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import com.hellofit.kidozone.R;
 import com.hellofit.kidozone.entity.FoodInfo;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +37,9 @@ import androidx.appcompat.app.AppCompatActivity;
  *  Copyright @ 2019 Mingzhe Liu. All right reserved
  *
  *  @author Mingzhe Liu
- *  @version 3.2
+ *  @version 3.6
+ *
+ *  Final modified date: 10/17/2019 by Mingzhe Liu
  */
 public class LunchBoxMatchActivity extends AppCompatActivity {
 
@@ -48,6 +54,7 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
     private char answer;
 
     private MediaPlayer mp;
+    private int media_length;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,24 +98,65 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
         btn_backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder normalDialog = new AlertDialog.Builder(LunchBoxMatchActivity.this);
-                normalDialog.setIcon(R.drawable.icon_dialog);
-                normalDialog.setTitle("Oops...").setMessage("You really want to quit now?");
-                normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mp.stop();
-                        Intent intent = new Intent(LunchBoxMatchActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                });
-                normalDialog.setNegativeButton("I click wrong button", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                Typeface type = Typeface.createFromAsset(getApplicationContext().getAssets(), "Monaco.ttf");
+                AlertDialog builder = new AlertDialog.Builder(LunchBoxMatchActivity.this)
+                        .setTitle("Oops...")
+                        .setIcon(R.drawable.icon_dialog)
+                        .setMessage("You really want to quit the game?")
+                        .setPositiveButton("Yes, I'm leaving!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(LunchBoxMatchActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No, Wrong button.", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                    }
-                });
-                normalDialog.show();
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
+
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(20);
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(type);
+
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.design_default_color_primary));
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setTextSize(20);
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(type);
+
+                try {
+                    // Get mAlert Object
+                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                    mAlert.setAccessible(true);
+                    Object mAlertController = mAlert.get(builder);
+
+                    // Obtain mTitle object
+                    // Set size and color
+                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                    mTitle.setAccessible(true);
+                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                    mTitleView.setTextSize(25);
+                    mTitleView.setTypeface(type);
+                    mTitleView.setTextColor(Color.BLACK);
+
+                    // Obtain mMessageView object
+                    // Set size and color
+                    Field mMessage = mAlertController.getClass().getDeclaredField("mMessageView");
+                    mMessage.setAccessible(true);
+                    TextView mMessageView = (TextView) mMessage.get(mAlertController);
+                    mMessageView.setTextColor(Color.BLACK);
+                    mMessageView.setTextSize(22);
+                    mMessageView.setTypeface(type);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (NoSuchFieldException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -168,12 +216,12 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
             }
             // Size of pickedList has reached 5, stop the game, going to next stage
             else {
-                showAlertDialog("Great Work! Made 6 Correct Now!", "Go Pack Lunch Box", false);
+                showFinalAlertDialog();
             }
         } else {
             // Size of pickedList is not enough 6, continue the game
             if (pickedList.size() < 6) {
-                showAlertDialog("Opps..Think it Carefully", "Try Next One", true);
+                showWrongAlertDialog();
                 while (true) {
                     currentFoodIndex = getRandomNum(0, 29);
                     if (!pickedList.contains(foodInfoList.get(currentFoodIndex))) {
@@ -230,27 +278,105 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
         }
     }
 
-    private void showAlertDialog(String title, String buttonText, boolean flag) {
-        AlertDialog.Builder normalDialog = new AlertDialog.Builder(LunchBoxMatchActivity.this);
-//        normalDialog.setIcon(R.drawable.icon_dialog);
-        normalDialog.setTitle("").setMessage(title);
-        if (flag) {
-            normalDialog.setPositiveButton(buttonText, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // ...To-do
-                }
-            });
-        } else {
-            normalDialog.setPositiveButton(buttonText, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(LunchBoxMatchActivity.this, LunchBoxSelectActivity.class);
-                    startActivity(intent);
-                }
-            });
+    private void showFinalAlertDialog() {
+        Typeface type = Typeface.createFromAsset(getApplicationContext().getAssets(), "Monaco.ttf");
+        AlertDialog builder = new AlertDialog.Builder(LunchBoxMatchActivity.this)
+                .setTitle("Great Work!")
+                .setIcon(R.drawable.icon_correct)
+                .setMessage("You have made 6 correct now!")
+                .setPositiveButton("Go select foods", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(LunchBoxMatchActivity.this, LunchBoxSelectActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setCancelable(false)
+                .show();
+
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(20);
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(type);
+
+        try {
+            // Get mAlert Object
+            Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+            mAlert.setAccessible(true);
+            Object mAlertController = mAlert.get(builder);
+
+            // Obtain mTitle object
+            // Set size and color
+            Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+            mTitle.setAccessible(true);
+            TextView mTitleView = (TextView) mTitle.get(mAlertController);
+            mTitleView.setTextSize(25);
+            mTitleView.setTypeface(type);
+            mTitleView.setTextColor(Color.BLACK);
+
+            // Obtain mMessageView object
+            // Set size and color
+            Field mMessage = mAlertController.getClass().getDeclaredField("mMessageView");
+            mMessage.setAccessible(true);
+            TextView mMessageView = (TextView) mMessage.get(mAlertController);
+            mMessageView.setTextColor(Color.BLACK);
+            mMessageView.setTextSize(22);
+            mMessageView.setTypeface(type);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
         }
-        normalDialog.show();
+    }
+
+    private void showWrongAlertDialog() {
+        Typeface type = Typeface.createFromAsset(getApplicationContext().getAssets(), "Monaco.ttf");
+        AlertDialog builder = new AlertDialog.Builder(LunchBoxMatchActivity.this)
+                .setTitle("Oops...")
+                .setIcon(R.drawable.icon_cross)
+                .setMessage("Think it carefully next time!")
+                .setPositiveButton("Try another one", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .setCancelable(false)
+                .show();
+
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(20);
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(type);
+
+        try {
+            // Get mAlert Object
+            Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+            mAlert.setAccessible(true);
+            Object mAlertController = mAlert.get(builder);
+
+            // Obtain mTitle object
+            // Set size and color
+            Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+            mTitle.setAccessible(true);
+            TextView mTitleView = (TextView) mTitle.get(mAlertController);
+            mTitleView.setTextSize(25);
+            mTitleView.setTypeface(type);
+            mTitleView.setTextColor(Color.BLACK);
+
+            // Obtain mMessageView object
+            // Set size and color
+            Field mMessage = mAlertController.getClass().getDeclaredField("mMessageView");
+            mMessage.setAccessible(true);
+            TextView mMessageView = (TextView) mMessage.get(mAlertController);
+            mMessageView.setTextColor(Color.BLACK);
+            mMessageView.setTextSize(22);
+            mMessageView.setTypeface(type);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setFoodTypeImage(int typeNum, ImageView imageView) {
@@ -262,7 +388,7 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
                 Glide.with(this).load(R.drawable.lunchbox_question_vegetable).into(imageView);
                 break;
             case 2:
-                Glide.with(this).load(R.drawable.lunchbox_question_diary_product).into(imageView);
+                Glide.with(this).load(R.drawable.lunchbox_question_dairy_product).into(imageView);
                 break;
             case 3:
                 Glide.with(this).load(R.drawable.lunchbox_question_meat).into(imageView);
@@ -300,6 +426,8 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
      */
     private void setFoodNameAndImage(int index, ImageView iv, TextView tv) {
         Glide.with(this).load(foodInfoList.get(index).getFoodImage()).into(iv);
+        Typeface type = Typeface.createFromAsset(getApplicationContext().getAssets(), "Monaco.ttf");
+        tv.setTypeface(type);
         tv.setText(foodInfoList.get(index).getFoodName());
     }
 
@@ -316,7 +444,34 @@ public class LunchBoxMatchActivity extends AppCompatActivity {
         return r.nextInt((max - min) + 1) + min;
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (mp != null) {
+            mp.pause();
+            media_length = mp.getCurrentPosition();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mp != null) {
+            mp.seekTo(media_length);
+            mp.start();
+        }
+    }
 
 }
 

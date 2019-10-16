@@ -9,12 +9,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -24,6 +28,7 @@ import com.google.gson.reflect.TypeToken;
 import com.hellofit.kidozone.R;
 import com.hellofit.kidozone.entity.FoodInfo;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -34,7 +39,9 @@ import java.util.ArrayList;
  *  Copyright @ 2019 Mingzhe Liu. All right reserved
  *
  *  @author Mingzhe Liu
- *  @version 3.2
+ *  @version 3.6
+ *
+ *  Final modified date: 10/17/2019 by Mingzhe Liu
  */
 
 public class LunchBoxSelectActivity extends AppCompatActivity {
@@ -67,23 +74,65 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder normalDialog = new AlertDialog.Builder(LunchBoxSelectActivity.this);
-                normalDialog.setIcon(R.drawable.icon_dialog);
-                normalDialog.setTitle("Oops...").setMessage("You really want to quit now?");
-                normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(LunchBoxSelectActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                });
-                normalDialog.setNegativeButton("I click wrong button", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                Typeface type = Typeface.createFromAsset(getApplicationContext().getAssets(), "Monaco.ttf");
+                AlertDialog builder = new AlertDialog.Builder(LunchBoxSelectActivity.this)
+                        .setTitle("Oops...")
+                        .setIcon(R.drawable.icon_dialog)
+                        .setMessage("You really want to quit the game?")
+                        .setPositiveButton("Yes, I'm leaving!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(LunchBoxSelectActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No, Wrong button.", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                    }
-                });
-                normalDialog.show();
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
+
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(20);
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(type);
+
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.design_default_color_primary));
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setTextSize(20);
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(type);
+
+                try {
+                    // Get mAlert Object
+                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                    mAlert.setAccessible(true);
+                    Object mAlertController = mAlert.get(builder);
+
+                    // Obtain mTitle object
+                    // Set size and color
+                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                    mTitle.setAccessible(true);
+                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                    mTitleView.setTextSize(25);
+                    mTitleView.setTypeface(type);
+                    mTitleView.setTextColor(Color.BLACK);
+
+                    // Obtain mMessageView object
+                    // Set size and color
+                    Field mMessage = mAlertController.getClass().getDeclaredField("mMessageView");
+                    mMessage.setAccessible(true);
+                    TextView mMessageView = (TextView) mMessage.get(mAlertController);
+                    mMessageView.setTextColor(Color.BLACK);
+                    mMessageView.setTextSize(22);
+                    mMessageView.setTypeface(type);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (NoSuchFieldException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -96,18 +145,7 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
                 }
                 else {
                     pickedList.add(foodInfoList.get((loopIndex - 1) * 5));
-                    AlertDialog.Builder normalDialog = new AlertDialog.Builder(LunchBoxSelectActivity.this);
-//                  normalDialog.setIcon(R.drawable.icon_dialog);
-                    normalDialog.setTitle("").setMessage("You've finish all pick! Check the result!");
-                    normalDialog.setPositiveButton("Go", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResultActivity.class);
-                            saveListInSP();
-                            startActivity(intent);
-                        }
-                    });
-                    normalDialog.show();
+                    finishPickAlterBuilder();
                 }
 
             }
@@ -122,18 +160,7 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
                 }
                 else {
                     pickedList.add(foodInfoList.get((loopIndex - 1) * 5 + 1));
-                    AlertDialog.Builder normalDialog = new AlertDialog.Builder(LunchBoxSelectActivity.this);
-//                  normalDialog.setIcon(R.drawable.icon_dialog);
-                    normalDialog.setTitle("").setMessage("You've finish all pick! Check the result!");
-                    normalDialog.setPositiveButton("Go", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResultActivity.class);
-                            saveListInSP();
-                            startActivity(intent);
-                        }
-                    });
-                    normalDialog.show();
+                    finishPickAlterBuilder();
                 }
             }
         });
@@ -147,18 +174,7 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
                 }
                 else {
                     pickedList.add(foodInfoList.get((loopIndex - 1) * 5 + 2));
-                    AlertDialog.Builder normalDialog = new AlertDialog.Builder(LunchBoxSelectActivity.this);
-//                  normalDialog.setIcon(R.drawable.icon_dialog);
-                    normalDialog.setTitle("").setMessage("You've finish all pick! Check the result!");
-                    normalDialog.setPositiveButton("Go", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResultActivity.class);
-                            saveListInSP();
-                            startActivity(intent);
-                        }
-                    });
-                    normalDialog.show();
+                    finishPickAlterBuilder();
                 }
             }
         });
@@ -170,19 +186,7 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
                     madeChoice(iv_selectType, btn_food1, btn_food2, btn_food3);
                 }
                 else {
-                    pickedList.add(foodInfoList.get((loopIndex - 1) * 5));
-                    AlertDialog.Builder normalDialog = new AlertDialog.Builder(LunchBoxSelectActivity.this);
-//                  normalDialog.setIcon(R.drawable.icon_dialog);
-                    normalDialog.setTitle("").setMessage("You've finish all pick! Check the result!");
-                    normalDialog.setPositiveButton("Go", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResultActivity.class);
-                            saveListInSP();
-                            startActivity(intent);
-                        }
-                    });
-                    normalDialog.show();
+                    finishPickAlterBuilder();
                 }
             }
         });
@@ -243,7 +247,7 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
                 loopIndex++;
                 break;
             case 2:
-                Glide.with(this).load(R.drawable.lunchbox_select_diary_product).into(imageView);
+                Glide.with(this).load(R.drawable.lunchbox_select_dairy_product).into(imageView);
                 Glide.with(this).asBitmap().load(foodInfoList.get(10).getFoodImage()).into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -376,5 +380,66 @@ public class LunchBoxSelectActivity extends AppCompatActivity {
         String json = gson.toJson(pickedList);
         editor.putString("pickedList", json);
         editor.commit();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void finishPickAlterBuilder() {
+        Typeface type = Typeface.createFromAsset(getApplicationContext().getAssets(), "Monaco.ttf");
+        AlertDialog builder = new AlertDialog.Builder(LunchBoxSelectActivity.this)
+                .setTitle("Great!")
+                .setIcon(R.drawable.icon_correct)
+                .setMessage("You have finished your selection! Let's have a look~")
+                .setPositiveButton("Go!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(LunchBoxSelectActivity.this, LunchBoxResultActivity.class);
+                        saveListInSP();
+                        startActivity(intent);
+                    }
+                })
+                .setCancelable(false)
+                .show();
+
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(20);
+        builder.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(type);
+
+        try {
+            // Get mAlert Object
+            Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+            mAlert.setAccessible(true);
+            Object mAlertController = mAlert.get(builder);
+
+            // Obtain mTitle object
+            // Set size and color
+            Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+            mTitle.setAccessible(true);
+            TextView mTitleView = (TextView) mTitle.get(mAlertController);
+            mTitleView.setTextSize(25);
+            mTitleView.setTypeface(type);
+            mTitleView.setTextColor(Color.BLACK);
+
+            // Obtain mMessageView object
+            // Set size and color
+            Field mMessage = mAlertController.getClass().getDeclaredField("mMessageView");
+            mMessage.setAccessible(true);
+            TextView mMessageView = (TextView) mMessage.get(mAlertController);
+            mMessageView.setTextColor(Color.BLACK);
+            mMessageView.setTextSize(22);
+            mMessageView.setTypeface(type);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
     }
 }

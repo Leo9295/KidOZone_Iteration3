@@ -19,6 +19,8 @@ import com.hellofit.kidozone.entity.*;
  *
  *  @author Mingzhe Liu
  *  @version 3.0
+ *
+ *  Final modified date: 10/02/2019 by Mingzhe Liu
  */
 
 public class RestClient {
