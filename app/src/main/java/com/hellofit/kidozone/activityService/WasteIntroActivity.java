@@ -61,6 +61,9 @@ public class WasteIntroActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * initial the video view and set a mediaController.
+     */
     private void init() {
         videoView = (VideoView) findViewById(R.id.videoView);
         mediaController = new MediaController(this);
