@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,7 +40,9 @@ import java.util.ArrayList;
  *  Copyright @ 2019 Mingzhe Liu. All right reserved
  *
  *  @author Mingzhe Liu
- *  @version 3.2
+ *  @version 3.3
+ *
+ *  Final modified date: 10/14/2019 by Weiqiang Li
  */
 
 public class MainActivity extends AppCompatActivity {
@@ -200,6 +203,15 @@ public class MainActivity extends AppCompatActivity {
             wasteInfos = RestClient.parseWasteJson(RestClient.getRandomWaste());
             return null;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

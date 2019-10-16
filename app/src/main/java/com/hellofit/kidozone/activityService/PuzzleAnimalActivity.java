@@ -2,8 +2,11 @@ package com.hellofit.kidozone.activityService;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,6 +22,8 @@ import com.hellofit.kidozone.puzzleGame.ui.PuzzleLayout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.reflect.Field;
+
 /***
  *  This class is the puzzle game function with Australia animals
  *
@@ -26,7 +31,9 @@ import androidx.appcompat.app.AppCompatActivity;
  *  Copyright @ 2019 Mingzhe Liu. All right reserved
  *
  *  @author Weiqiang Li
- *  @version 3.2
+ *  @version 3.6
+ *
+ *  Final modified date: 10/16/2019 by Mingzhe Liu
  */
 
 public class PuzzleAnimalActivity extends AppCompatActivity implements PuzzleGame.GameStateListener {
@@ -37,6 +44,7 @@ public class PuzzleAnimalActivity extends AppCompatActivity implements PuzzleGam
     private TextView tvLevel;
     private SelectImageDialog selectImageDialog;
     private MediaPlayer mp;
+    private int media_length;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +52,9 @@ public class PuzzleAnimalActivity extends AppCompatActivity implements PuzzleGam
         setContentView(R.layout.puzzle_animal);
         initView();
         initListener();
+
+        final Typeface type = Typeface.createFromAsset(getApplicationContext().getAssets(), "Monaco.ttf");
+        tvLevel.setTypeface(type);
 
         mp = MediaPlayer.create(PuzzleAnimalActivity.this, R.raw.puzzle_animals);
         mp.start();
@@ -53,24 +64,64 @@ public class PuzzleAnimalActivity extends AppCompatActivity implements PuzzleGam
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder normalDialog = new AlertDialog.Builder(PuzzleAnimalActivity.this);
-                normalDialog.setIcon(R.drawable.icon_dialog);
-                normalDialog.setTitle("Oops...").setMessage("You really want to quit now?");
-                normalDialog.setPositiveButton("Yes, I'm leaving", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mp.stop();
-                        Intent intent = new Intent(PuzzleAnimalActivity.this, PuzzleMainActivity.class);
-                        startActivityForResult(intent, 1);
-                    }
-                });
-                normalDialog.setNegativeButton("I click wrong button", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                AlertDialog builder = new AlertDialog.Builder(PuzzleAnimalActivity.this)
+                        .setTitle("Oops...")
+                        .setIcon(R.drawable.icon_dialog)
+                        .setMessage("You really want to quit the game?")
+                        .setPositiveButton("Yes, I'm leaving!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(PuzzleAnimalActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No, Wrong button.", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                    }
-                });
-                normalDialog.show();
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
+
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(20);
+                builder.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(type);
+
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.design_default_color_primary));
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setTextSize(20);
+                builder.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(type);
+
+                try {
+                    // Get mAlert Object
+                    Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+                    mAlert.setAccessible(true);
+                    Object mAlertController = mAlert.get(builder);
+
+                    // Obtain mTitle object
+                    // Set size and color
+                    Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+                    mTitle.setAccessible(true);
+                    TextView mTitleView = (TextView) mTitle.get(mAlertController);
+                    mTitleView.setTextSize(25);
+                    mTitleView.setTypeface(type);
+                    mTitleView.setTextColor(Color.BLACK);
+
+                    // Obtain mMessageView object
+                    // Set size and color
+                    Field mMessage = mAlertController.getClass().getDeclaredField("mMessageView");
+                    mMessage.setAccessible(true);
+                    TextView mMessageView = (TextView) mMessage.get(mAlertController);
+                    mMessageView.setTextColor(Color.BLACK);
+                    mMessageView.setTextSize(22);
+                    mMessageView.setTypeface(type);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (NoSuchFieldException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -143,6 +194,34 @@ public class PuzzleAnimalActivity extends AppCompatActivity implements PuzzleGam
                 successDialog.dismiss();
             }
         });
+    }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (mp != null) {
+            mp.pause();
+            media_length = mp.getCurrentPosition();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mp != null) {
+            mp.seekTo(media_length);
+            mp.start();
+        }
     }
 }

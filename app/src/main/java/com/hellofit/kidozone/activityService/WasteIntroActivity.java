@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
@@ -20,13 +21,16 @@ import com.hellofit.kidozone.R;
  *  Copyright @ 2019 Weiqiang Li. All right reserved
  *
  *  @author Weiqiang Li
- *  @version 3.2
+ *  @version 3.5
+ *
+ *  Final modified date: 10/13/2019 by Weiqiang Li
  */
 
 public class WasteIntroActivity extends AppCompatActivity {
 
     private VideoView videoView;
     private MediaController mediaController;
+    private int media_length;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +78,35 @@ public class WasteIntroActivity extends AppCompatActivity {
         mediaController.setVisibility(View.INVISIBLE);
         videoView.requestFocus();
         videoView.start();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (mediaController != null && videoView != null) {
+            videoView.pause();
+            media_length = videoView.getCurrentPosition();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mediaController != null && videoView != null) {
+            videoView.seekTo(media_length);
+            videoView.start();
+        }
     }
 
 }

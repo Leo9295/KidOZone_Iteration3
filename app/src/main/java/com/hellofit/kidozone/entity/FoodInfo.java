@@ -13,6 +13,8 @@ import android.os.Parcelable;
  *
  *  @author Mingzhe Liu
  *  @version 2.4
+ *
+ *  Final modified date: 09/05/2019 by Mingzhe Liu
  */
 
 public class FoodInfo implements Parcelable, java.io.Serializable {

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 
 import com.hellofit.kidozone.R;
 
@@ -23,7 +24,9 @@ import java.util.TimerTask;
  *  Copyright @ 2019 Mingzhe Liu. All right reserved
  *
  *  @author Mingzhe Liu
- *  @version 3.2
+ *  @version 3.3
+ *
+ *  Final modified date: 10/14/2019 by Mingzhe Liu
  */
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -82,5 +85,14 @@ public class WelcomeActivity extends AppCompatActivity {
         activityDisplayMetrics.density = targetDensity;
         activityDisplayMetrics.scaledDensity = targetScaledDensity;
         activityDisplayMetrics.densityDpi = targetDensityDpi;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -1,11 +1,22 @@
 package com.hellofit.kidozone.puzzleGame.game;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hellofit.kidozone.R;
+import com.hellofit.kidozone.activityService.WasteMainActivity;
 import com.hellofit.kidozone.puzzleGame.ui.PuzzleLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.lang.reflect.Field;
 
 /***
  *  This class is the puzzle game function class
@@ -14,7 +25,9 @@ import androidx.annotation.NonNull;
  *  Copyright @ 2019 Weiqiang Li. All right reserved
  *
  *  @author Weiqiang Li
- *  @version 3.1
+ *  @version 3.5
+ *
+ *  Final modified date: 10/15/2019 by Mingzhe Liu
  */
 
 public class PuzzleGame implements Game, PuzzleLayout.SuccessListener {
