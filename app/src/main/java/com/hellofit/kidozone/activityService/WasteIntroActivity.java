@@ -89,6 +89,9 @@ public class WasteIntroActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    /**
+     *  Pause the video
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -99,6 +102,9 @@ public class WasteIntroActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *  Resume the video
+     */
     @Override
     protected void onResume() {
         super.onResume();

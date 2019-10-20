@@ -60,6 +60,9 @@ public class SelectImageDialog extends DialogFragment {
         imageList.setAdapter(imageListAdapter);
     }
 
+    /**
+     * Set the animal images to the Adapter
+     */
     public class ImageListAdapter extends RecyclerView.Adapter {
 
         @Override

@@ -50,7 +50,9 @@ public class PuzzleGame implements Game, PuzzleLayout.SuccessListener {
         return puzzleLayout == null;
     }
 
-
+    /**
+     * Add level
+     */
     @Override
     public void addLevel() {
         if (checkNull()) {
@@ -64,6 +66,9 @@ public class PuzzleGame implements Game, PuzzleLayout.SuccessListener {
         }
     }
 
+    /**
+     * Reduce level
+     */
     @Override
     public void reduceLevel() {
         if (checkNull()) {
@@ -77,6 +82,11 @@ public class PuzzleGame implements Game, PuzzleLayout.SuccessListener {
         }
     }
 
+    /**
+     * Change image
+     *
+     * @param res
+     */
     @Override
     public void changeImage(int res) {
         puzzleLayout.changeRes(res);

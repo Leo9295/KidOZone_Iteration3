@@ -58,6 +58,9 @@ public class SelectImageDialogSport extends DialogFragment {
         imageList.setAdapter(imageListAdapter);
     }
 
+    /**
+     * Set the sport images to the Adapter
+     */
     public class ImageListAdapter extends RecyclerView.Adapter {
 
         @Override

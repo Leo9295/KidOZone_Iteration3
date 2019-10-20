@@ -86,6 +86,9 @@ public class PuzzleIntroActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    /**
+     *  Pause the video
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -96,6 +99,9 @@ public class PuzzleIntroActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *  Resume the video
+     */
     @Override
     protected void onResume() {
         super.onResume();
